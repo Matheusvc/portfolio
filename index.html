@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matheus Vitor — Analista de Sistemas & Desenvolvedor Full-Stack</title>
+  <meta name="description" content="Portfólio de Matheus Vitor — Analista de Sistemas e Desenvolvedor Full-Stack. Java, Spring Boot, React, TypeScript, PostgreSQL.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ NAVBAR ============ -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <img src="assets/logo.svg" alt="Matheus Vitor" class="nav__logo-img">
+      </a>
+
+      <ul class="nav__links">
+        <li><a href="#projetos" class="nav__link">Projetos</a></li>
+        <li><a href="#services" class="nav__link">Serviços</a></li>
+        <li><a href="#stack" class="nav__link">Stack</a></li>
+        <li><a href="#sobre" class="nav__link">Sobre</a></li>
+        <li><a href="#contato" class="nav__cta">
+          Contato
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+        </a></li>
+      </ul>
+
+      <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero__grid">
+        <div class="hero__content">
+          <span class="hero__label">Analista de Sistemas & Desenvolvedor Full-Stack</span>
+          <h1 class="hero__title">
+            Transformo ideias complexas em <span class="hero__title-accent">software</span> que funciona
+          </h1>
+          <p class="hero__desc">
+            Do levantamento de requisitos ao deploy em produção — projeto, desenvolvo e entrego soluções que resolvem problemas reais.
+          </p>
+          <div class="hero__ctas">
+            <a href="#projetos" class="btn btn--lime">
+              Ver Projetos
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+            </a>
+            <a href="#contato" class="btn btn--outline-dark">Fale Comigo</a>
+          </div>
+        </div>
+
+        <div class="hero__photo">
+          <div class="hero__photo-wrapper">
+            <img src="assets/foto-matheus.jpg" alt="Matheus Vitor" class="hero__photo-img">
+          </div>
+          <span class="hero__photo-badge">Disponível para projetos</span>
+
+          <!-- Decorative -->
+          <svg class="hero__decor hero__decor--star hero__decor--star-1" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l3 9h9l-7.5 5.5L19.5 24 12 18l-7.5 6 3-9.5L0 9h9z"/></svg>
+          <svg class="hero__decor hero__decor--star hero__decor--star-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l3 9h9l-7.5 5.5L19.5 24 12 18l-7.5 6 3-9.5L0 9h9z"/></svg>
+          <div class="hero__decor hero__decor--dot hero__decor--dot-1"></div>
+          <div class="hero__decor hero__decor--dot hero__decor--dot-2"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ METRICS ============ -->
+  <section class="metrics reveal">
+    <div class="metrics__card">
+      <div class="metrics__grid">
+        <div class="metrics__item">
+          <span class="metrics__number" data-target="3">0</span><span class="metrics__plus">+</span>
+          <span class="metrics__label">Projetos Entregues</span>
+        </div>
+        <div class="metrics__item">
+          <span class="metrics__number" data-target="2">0</span><span class="metrics__plus">+</span>
+          <span class="metrics__label">Empresas Atendidas</span>
+        </div>
+        <div class="metrics__item">
+          <span class="metrics__number" data-target="10">0</span><span class="metrics__plus">+</span>
+          <span class="metrics__label">Tecnologias Dominadas</span>
+        </div>
+        <div class="metrics__item">
+          <span class="metrics__number" data-target="4">0</span><span class="metrics__plus">+</span>
+          <span class="metrics__label">Anos de Experiência</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJETOS ============ -->
+  <section class="projetos" id="projetos">
+    <div class="container">
+      <div class="projetos__header reveal">
+        <div class="projetos__header-left">
+          <p class="projetos__label">Projetos Selecionados</p>
+          <h2 class="projetos__title">Trabalhos<br>recentes</h2>
+        </div>
+        <p class="projetos__header-right">
+          Cada projeto é uma entrega real — com escopo, prazo e resultado mensurável. Do planejamento à produção.
+        </p>
+      </div>
+
+      <div class="projetos__grid">
+        <!-- Row 1: 65/35 -->
+        <div class="projetos__row projetos__row--1">
+          <a href="#" class="projeto-card reveal">
+            <div class="projeto-card__img">
+              <div class="projeto-card__placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+              </div>
+              <span class="projeto-card__sticker">Full-Stack</span>
+            </div>
+            <div class="projeto-card__content">
+              <div class="projeto-card__tags">
+                <span class="projeto-card__tag">React</span>
+                <span class="projeto-card__tag">Spring Boot</span>
+                <span class="projeto-card__tag">PostgreSQL</span>
+                <span class="projeto-card__tag">JWT Auth</span>
+              </div>
+              <h3 class="projeto-card__title">Painel Castro Advocacia</h3>
+              <p class="projeto-card__desc">Plataforma completa de gestão jurídica: dashboard analítico com gráficos em tempo real, CRUD de clientes e serviços, importação de dados e autenticação segura.</p>
+              <div class="projeto-card__footer">
+                <span class="projeto-card__meta">2024</span>
+                <div class="projeto-card__arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <a href="#" class="projeto-card reveal">
+            <div class="projeto-card__img">
+              <div class="projeto-card__placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              </div>
+              <span class="projeto-card__sticker">IA</span>
+            </div>
+            <div class="projeto-card__content">
+              <div class="projeto-card__tags">
+                <span class="projeto-card__tag">Python</span>
+                <span class="projeto-card__tag">NLP</span>
+                <span class="projeto-card__tag">API REST</span>
+              </div>
+              <h3 class="projeto-card__title">Chatbot Jurídico</h3>
+              <p class="projeto-card__desc">Automação de atendimento jurídico com inteligência artificial e processamento de linguagem natural.</p>
+              <div class="projeto-card__footer">
+                <span class="projeto-card__meta">2024</span>
+                <div class="projeto-card__arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- Row 2: 35/65 -->
+        <div class="projetos__row projetos__row--2">
+          <a href="#" class="projeto-card reveal">
+            <div class="projeto-card__img">
+              <div class="projeto-card__placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </div>
+              <span class="projeto-card__sticker">IoT</span>
+            </div>
+            <div class="projeto-card__content">
+              <div class="projeto-card__tags">
+                <span class="projeto-card__tag">Arduino</span>
+                <span class="projeto-card__tag">Sensores</span>
+                <span class="projeto-card__tag">IoT</span>
+              </div>
+              <h3 class="projeto-card__title">Feira do Empreendedor</h3>
+              <p class="projeto-card__desc">Sistema IoT com sensores Arduino para coleta e monitoramento de dados ambientais em tempo real. Desenvolvido para o SEBRAE.</p>
+              <div class="projeto-card__footer">
+                <span class="projeto-card__meta">2023</span>
+                <div class="projeto-card__arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <div class="projeto-card projeto-card--cta reveal" style="display:flex;align-items:center;justify-content:center;background:var(--surface-alt);min-height:320px;">
+            <div style="text-align:center;padding:40px;">
+              <p style="font-family:var(--font-heading);font-size:24px;font-weight:800;color:var(--white);margin-bottom:12px;letter-spacing:-0.03em;">Próximo projeto?</p>
+              <p style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);margin-bottom:24px;line-height:1.6;">Seu projeto pode ser o próximo aqui.</p>
+              <a href="#contato" class="btn btn--lime">
+                Vamos conversar
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services__card reveal">
+        <div class="services__grid">
+          <div class="services__left">
+            <p class="services__label">Serviços</p>
+            <h2 class="services__title">Como posso<br>ajudar</h2>
+            <p class="services__desc">
+              Do conceito à entrega final, cubro todas as etapas do desenvolvimento de software com foco em resultado.
+            </p>
+
+            <div class="services__list">
+              <div class="services__item">
+                <span class="services__item-number">01</span>
+                <span class="services__item-name">Desenvolvimento Full-Stack</span>
+                <span class="services__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg></span>
+              </div>
+              <div class="services__item">
+                <span class="services__item-number">02</span>
+                <span class="services__item-name">APIs & Integrações</span>
+                <span class="services__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg></span>
+              </div>
+              <div class="services__item">
+                <span class="services__item-number">03</span>
+                <span class="services__item-name">Dashboards & Painéis</span>
+                <span class="services__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg></span>
+              </div>
+              <div class="services__item">
+                <span class="services__item-number">04</span>
+                <span class="services__item-name">Automação com IA</span>
+                <span class="services__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg></span>
+              </div>
+              <div class="services__item">
+                <span class="services__item-number">05</span>
+                <span class="services__item-name">Sistemas IoT</span>
+                <span class="services__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="services__right">
+            <div class="services__image">
+              <div class="services__image-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+              </div>
+            </div>
+            <div class="services__cta-card">
+              <p>Precisa de um sistema completo, do front ao deploy?</p>
+              <a href="#contato">
+                Vamos conversar →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IMPACT PHRASE ============ -->
+  <section class="impact reveal">
+    <div class="container">
+      <p class="impact__text">
+        Criar
+        <svg class="impact__star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l3 9h9l-7.5 5.5L19.5 24 12 18l-7.5 6 3-9.5L0 9h9z"/></svg>
+        Aprender
+        <svg class="impact__star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l3 9h9l-7.5 5.5L19.5 24 12 18l-7.5 6 3-9.5L0 9h9z"/></svg>
+        Evoluir
+      </p>
+      <div class="impact__line">
+        <svg class="impact__line-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l3 9h9l-7.5 5.5L19.5 24 12 18l-7.5 6 3-9.5L0 9h9z"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TECH STACK ============ -->
+  <section class="stack" id="stack">
+    <div class="container">
+      <div class="stack__header reveal">
+        <p class="stack__label">Ferramentas & Tecnologias</p>
+        <h2 class="stack__title">Minha Stack</h2>
+      </div>
+
+      <div class="stack__grid reveal">
+        <div class="stack__card">
+          <div class="stack__card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 13h6l2-8 4 16 2-8h6"/></svg>
+          </div>
+          <span class="stack__card-name">Java</span>
+          <span class="stack__card-desc">Back-end</span>
+        </div>
+
+        <div class="stack__card">
+          <div class="stack__card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </div>
+          <span class="stack__card-name">Spring Boot</span>
+          <span class="stack__card-desc">Framework</span>
+        </div>
+
+        <div class="stack__card">
+          <div class="stack__card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="2"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/><path d="M2 12h20"/></svg>
+          </div>
+          <span class="stack__card-name">React</span>
+          <span class="stack__card-desc">Front-end</span>
+        </div>
+
+        <div class="stack__card">
+          <div class="stack__card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+          </div>
+          <span class="stack__card-name">TypeScript</span>
+          <span class="stack__card-desc">Tipagem</span>
+        </div>
+
+        <div class="stack__card">
+          <div class="stack__card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+          <span class="stack__card-name">PostgreSQL</span>
+          <span class="stack__card-desc">Banco de Dados</span>
+        </div>
+
+        <div class="stack__card">
+          <div class="stack__card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <span class="stack__card-name">Tailwind CSS</span>
+          <span class="stack__card-desc">Estilização</span>
+        </div>
+
+        <div class="stack__card">
+          <div class="stack__card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 11a9 9 0 0118 0"/><path d="M4 11V8"/><path d="M22 11v3"/><circle cx="12" cy="19" r="2"/><path d="M10 19H6a2 2 0 01-2-2v-3"/><path d="M14 19h4a2 2 0 002-2v-3"/></svg>
+          </div>
+          <span class="stack__card-name">REST APIs</span>
+          <span class="stack__card-desc">Integração</span>
+        </div>
+
+        <div class="stack__card">
+          <div class="stack__card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a5 5 0 015 5v3H7V7a5 5 0 015-5z"/><rect x="3" y="10" width="18" height="12" rx="2"/><circle cx="12" cy="16" r="1"/></svg>
+          </div>
+          <span class="stack__card-name">JWT Auth</span>
+          <span class="stack__card-desc">Segurança</span>
+        </div>
+
+        <div class="stack__card">
+          <div class="stack__card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><path d="M6 9v12"/></svg>
+          </div>
+          <span class="stack__card-name">Git</span>
+          <span class="stack__card-desc">Versionamento</span>
+        </div>
+
+        <div class="stack__card">
+          <div class="stack__card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 13h6l2-8 4 16 2-8h6"/></svg>
+          </div>
+          <span class="stack__card-name">IoT</span>
+          <span class="stack__card-desc">Arduino & Sensores</span>
+        </div>
+
+        <div class="stack__card">
+          <div class="stack__card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <span class="stack__card-name">Vite</span>
+          <span class="stack__card-desc">Build Tool</span>
+        </div>
+
+        <div class="stack__card">
+          <div class="stack__card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/><path d="M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>
+          </div>
+          <span class="stack__card-name">Python</span>
+          <span class="stack__card-desc">Automação & IA</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="sobre" id="sobre">
+    <div class="container">
+      <div class="sobre__grid reveal">
+        <div class="sobre__photo-wrap">
+          <div class="sobre__photo">
+            <img src="assets/foto-matheus.jpg" alt="Matheus Vitor">
+          </div>
+          <div class="sobre__photo-decor sobre__photo-decor--circle"></div>
+          <svg class="sobre__photo-decor sobre__photo-decor--star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l3 9h9l-7.5 5.5L19.5 24 12 18l-7.5 6 3-9.5L0 9h9z"/></svg>
+        </div>
+
+        <div class="sobre__text">
+          <p class="sobre__label">Sobre Mim</p>
+          <h2 class="sobre__title">Quem está por<br>trás do código</h2>
+          <p class="sobre__bio">
+            Analista de Sistemas e Desenvolvedor Full-Stack com formação em Engenharia de Software pela Universidade CEUMA. Atuo para duas empresas entregando soluções que vão do levantamento de requisitos ao deploy em produção.
+          </p>
+          <p class="sobre__bio">
+            Minha stack combina Java + Spring Boot no back-end com React + TypeScript no front-end, sustentada por PostgreSQL e pipelines de deploy reais. Já entreguei plataformas de gestão com dashboards analíticos, chatbots com IA para atendimento automatizado e sistemas IoT com coleta de dados em tempo real.
+          </p>
+
+          <div class="sobre__info">
+            <span class="sobre__info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              São Luís, MA
+            </span>
+            <span class="sobre__info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              Eng. de Software — CEUMA
+            </span>
+            <span class="sobre__info-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+              2 Empresas
+            </span>
+          </div>
+
+          <a href="#contato" class="btn btn--lime">
+            Fale comigo
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contato" id="contato">
+    <div class="container">
+      <!-- Marquee -->
+      <div class="contato__marquee">
+        <div class="contato__marquee-track">
+          <span class="contato__marquee-item">Disponível para projetos</span>
+          <span class="contato__marquee-sep">✦</span>
+          <span class="contato__marquee-item">Full-Stack</span>
+          <span class="contato__marquee-sep">✦</span>
+          <span class="contato__marquee-item">Freelance</span>
+          <span class="contato__marquee-sep">✦</span>
+          <span class="contato__marquee-item">Consultoria</span>
+          <span class="contato__marquee-sep">✦</span>
+          <span class="contato__marquee-item">Disponível para projetos</span>
+          <span class="contato__marquee-sep">✦</span>
+          <span class="contato__marquee-item">Full-Stack</span>
+          <span class="contato__marquee-sep">✦</span>
+          <span class="contato__marquee-item">Freelance</span>
+          <span class="contato__marquee-sep">✦</span>
+          <span class="contato__marquee-item">Consultoria</span>
+          <span class="contato__marquee-sep">✦</span>
+          <span class="contato__marquee-item">Disponível para projetos</span>
+          <span class="contato__marquee-sep">✦</span>
+          <span class="contato__marquee-item">Full-Stack</span>
+          <span class="contato__marquee-sep">✦</span>
+          <span class="contato__marquee-item">Freelance</span>
+          <span class="contato__marquee-sep">✦</span>
+          <span class="contato__marquee-item">Consultoria</span>
+          <span class="contato__marquee-sep">✦</span>
+        </div>
+      </div>
+
+      <div class="contato__grid reveal">
+        <div class="contato__left">
+          <h2 class="contato__title">Vamos tirar seu<br>projeto do papel</h2>
+          <p class="contato__desc">
+            Tem uma ideia, um sistema para construir ou um processo para automatizar? Me conta — a primeira conversa é sempre sem compromisso.
+          </p>
+
+          <form class="contato__form" id="contactForm">
+            <input type="email" class="contato__input" placeholder="Seu melhor e-mail" required>
+            <button type="submit" class="contato__submit">Enviar →</button>
+          </form>
+          <div id="formFeedback" class="form-feedback" style="font-size:13px;margin-top:-20px;margin-bottom:16px;"></div>
+
+          <div class="contato__links">
+            <a href="mailto:matheusvitorcl1@gmail.com" class="contato__link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              E-mail
+            </a>
+            <a href="https://github.com/matheusvitor" target="_blank" rel="noopener noreferrer" class="contato__link">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576A12.01 12.01 0 0024 12c0-6.627-5.373-12-12-12z"/></svg>
+              GitHub
+            </a>
+            <a href="https://linkedin.com/in/matheusvitor" target="_blank" rel="noopener noreferrer" class="contato__link">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+          </div>
+        </div>
+
+        <div class="contato__visual">
+          <div class="contato__visual-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <a href="#" class="footer__logo">
+          <img src="assets/logo.svg" alt="Matheus Vitor">
+        </a>
+
+        <div class="footer__social">
+          <a href="https://github.com/matheusvitor" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576A12.01 12.01 0 0024 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="https://linkedin.com/in/matheusvitor" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <hr class="footer__divider">
+
+      <div class="footer__bottom">
+        <span class="footer__copy">&copy; 2024 Matheus Vitor. Todos os direitos reservados.</span>
+        <div class="footer__links">
+          <a href="#hero">Início</a>
+          <a href="#projetos">Projetos</a>
+          <a href="#contato">Contato</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

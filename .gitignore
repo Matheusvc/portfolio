@@ -1,0 +1,16 @@
+# Prompts internos de desenvolvimento
+prompt-redesign.md
+prompts-orca.md
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node (caso use futuramente)
+node_modules/
