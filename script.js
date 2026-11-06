@@ -56,6 +56,7 @@
     var prev = document.getElementById(prevId);
     var next = document.getElementById(nextId);
     var scroller = document.getElementById(scrollerId);
+    if (!prev || !next || !scroller) return;
     var step = function () {
       var card = scroller.querySelector('article');
       return card ? card.offsetWidth + 24 : 320;
