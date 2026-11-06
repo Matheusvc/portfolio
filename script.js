@@ -1,145 +1,102 @@
-// --- NAV SCROLL ---
-const nav = document.getElementById('nav');
+'use strict';
 
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('nav--scrolled', window.scrollY > 50);
-});
+(function () {
+  var nav = document.getElementById('nav');
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('.nav__link');
 
-// --- MOBILE MENU ---
-const toggle = document.querySelector('.nav__toggle');
-const links = document.querySelector('.nav__links');
-
-toggle.addEventListener('click', () => {
-  const open = links.classList.toggle('open');
-  toggle.setAttribute('aria-expanded', open);
-});
-
-document.querySelectorAll('.nav__link, .nav__cta').forEach(link => {
-  link.addEventListener('click', () => {
-    links.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-  });
-});
-
-// --- ACTIVE NAV LINK ---
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav__link');
-
-function updateActiveLink() {
-  const scrollY = window.scrollY + 120;
-
-  sections.forEach(section => {
-    const top = section.offsetTop;
-    const height = section.offsetHeight;
-    const id = section.getAttribute('id');
-
-    if (scrollY >= top && scrollY < top + height) {
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + id) {
-          link.classList.add('active');
-        }
-      });
-    }
-  });
-}
-
-window.addEventListener('scroll', updateActiveLink);
-
-// --- REVEAL ON SCROLL ---
-const reveals = document.querySelectorAll('.reveal');
-
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
-
-reveals.forEach(el => revealObserver.observe(el));
-
-setTimeout(() => {
-  document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
-    el.classList.add('visible');
-  });
-}, 3000);
-
-// --- METRICS COUNTER ---
-const counters = document.querySelectorAll('.metrics__number');
-let countersAnimated = false;
-
-const metricsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !countersAnimated) {
-      countersAnimated = true;
-      counters.forEach(counter => {
-        const target = parseInt(counter.dataset.target, 10);
-        const duration = 1500;
-        const start = performance.now();
-
-        function update(now) {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          counter.textContent = Math.round(eased * target);
-
-          if (progress < 1) {
-            requestAnimationFrame(update);
-          }
-        }
-
-        requestAnimationFrame(update);
-      });
-      metricsObserver.disconnect();
-    }
-  });
-}, { threshold: 0.3 });
-
-const metricsSection = document.querySelector('.metrics');
-if (metricsSection) {
-  metricsObserver.observe(metricsSection);
-}
-
-// --- CONTACT FORM ---
-const form = document.getElementById('contactForm');
-const feedback = document.getElementById('formFeedback');
-
-if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const email = form.querySelector('.contato__input');
-    if (!email || !email.value.trim()) {
-      if (feedback) {
-        feedback.textContent = 'Preencha seu e-mail.';
-        feedback.style.color = '#ff6b6b';
+  // --- NAV SCROLL + ACTIVE LINK ---
+  function onScroll() {
+    nav.classList.toggle('nav--scrolled', window.scrollY > 50);
+    var y = window.scrollY + 140;
+    sections.forEach(function (section) {
+      if (y >= section.offsetTop && y < section.offsetTop + section.offsetHeight) {
+        var id = '#' + section.id;
+        navLinks.forEach(function (link) {
+          link.classList.toggle('active', link.getAttribute('href') === id);
+        });
       }
-      return;
-    }
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
-    if (feedback) {
-      feedback.textContent = 'E-mail registrado! Entro em contato em breve.';
-      feedback.style.color = 'var(--lime)';
-    }
-    form.reset();
+  // --- MOBILE MENU ---
+  toggle.addEventListener('click', function () {
+    var isOpen = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.forEach(function (link) {
+    link.addEventListener('click', function () {
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
 
-    setTimeout(() => {
-      if (feedback) {
-        feedback.textContent = '';
+  // --- FAQ ACCORDION ---
+  document.querySelectorAll('.faq-item__q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var item = btn.parentElement;
+      var wasOpen = item.getAttribute('data-open') === 'true';
+      document.querySelectorAll('.faq-item').forEach(function (other) {
+        other.setAttribute('data-open', 'false');
+        other.querySelector('.faq-item__q').setAttribute('aria-expanded', 'false');
+      });
+      if (!wasOpen) {
+        item.setAttribute('data-open', 'true');
+        btn.setAttribute('aria-expanded', 'true');
       }
-    }, 5000);
+    });
   });
-}
 
-// --- SMOOTH SCROLL ---
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', (e) => {
-    const target = document.querySelector(anchor.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
+  // --- CAROUSEL ARROWS ---
+  function bindCarousel(prevId, nextId, scrollerId) {
+    var prev = document.getElementById(prevId);
+    var next = document.getElementById(nextId);
+    var scroller = document.getElementById(scrollerId);
+    var step = function () {
+      var card = scroller.querySelector('article');
+      return card ? card.offsetWidth + 24 : 320;
+    };
+    prev.addEventListener('click', function () { scroller.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { scroller.scrollBy({ left: step(), behavior: 'smooth' }); });
+  }
+  bindCarousel('svcPrev', 'svcNext', 'svcScroller');
+  bindCarousel('projPrev', 'projNext', 'projScroller');
+
+  // --- TESTIMONIALS ---
+  var depos = [
+    {
+      quote: '"Matheus entendeu exatamente o que precisávamos e entregou um sistema completo, com login seguro e relatórios claros. Comunicação direta, prazos cumpridos — recomendo de olhos fechados."',
+      name: 'Castro Advocacia',
+      place: 'SÃO LUÍS, MA'
     }
+  ];
+  var current = 0;
+  var quoteEl = document.getElementById('depoQuote');
+  var nameEl = document.getElementById('depoName');
+  var placeEl = document.getElementById('depoPlace');
+  var people = document.querySelectorAll('.depo__person');
+
+  function showDepo(i) {
+    current = (i + depos.length) % depos.length;
+    quoteEl.style.opacity = 0;
+    setTimeout(function () {
+      quoteEl.textContent = depos[current].quote;
+      nameEl.textContent = depos[current].name;
+      placeEl.textContent = depos[current].place;
+      quoteEl.style.opacity = 1;
+    }, 200);
+    people.forEach(function (p, idx) { p.classList.toggle('is-active', idx === current); });
+  }
+  document.getElementById('depoPrev').addEventListener('click', function () { showDepo(current - 1); });
+  document.getElementById('depoNext').addEventListener('click', function () { showDepo(current + 1); });
+  people.forEach(function (p) {
+    p.addEventListener('click', function () { showDepo(Number(p.dataset.index)); });
   });
-});
+
+  // --- YEAR ---
+  document.getElementById('currentYear').textContent = new Date().getFullYear();
+})();

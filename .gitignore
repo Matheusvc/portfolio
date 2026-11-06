@@ -1,6 +1,5 @@
-# Prompts internos de desenvolvimento
-prompt-redesign.md
-prompts-orca.md
+# Claude Code config
+.claude/
 
 # OS
 Thumbs.db
@@ -12,5 +11,6 @@ Thumbs.db
 *.swp
 *.swo
 
-# Node (caso use futuramente)
+# Node
 node_modules/
+package-lock.json

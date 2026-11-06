@@ -3,537 +3,531 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matheus Vitor — Analista de Sistemas & Desenvolvedor Full-Stack</title>
-  <meta name="description" content="Portfólio de Matheus Vitor — Analista de Sistemas e Desenvolvedor Full-Stack. Java, Spring Boot, React, TypeScript, PostgreSQL.">
+  <title>Matheus Lira — Analista de Sistemas e Desenvolvedor Full-Stack</title>
+  <meta name="description" content="Matheus Lira — Analista de Sistemas e Desenvolvedor Full-Stack. Transformo processos manuais e dados dispersos em sistemas, APIs e automações.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Caveat:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ============ NAVBAR ============ -->
+  <!-- NAV -->
   <nav class="nav" id="nav">
-    <div class="nav__inner">
-      <a href="#" class="nav__logo">
-        <img src="assets/logo.svg" alt="Matheus Vitor" class="nav__logo-img">
+    <div class="container nav__inner">
+      <a href="#inicio" class="nav__logo" aria-label="Início">
+        <img src="assets/logo.png" alt="Matheus Lira">
       </a>
-
-      <ul class="nav__links">
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#inicio" class="nav__link active">Início</a></li>
+        <li><a href="#sobre" class="nav__link">Sobre mim <span class="nav__caret">▾</span></a></li>
+        <li><a href="#atuacao" class="nav__link">Atuação</a></li>
         <li><a href="#projetos" class="nav__link">Projetos</a></li>
-        <li><a href="#services" class="nav__link">Serviços</a></li>
-        <li><a href="#stack" class="nav__link">Stack</a></li>
-        <li><a href="#sobre" class="nav__link">Sobre</a></li>
-        <li><a href="#contato" class="nav__cta">
-          Contato
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-        </a></li>
+        <li><a href="#trajetoria" class="nav__link">Trajetória <span class="nav__caret">▾</span></a></li>
+        <li><a href="#contato" class="nav__link">Contato</a></li>
       </ul>
-
-      <button class="nav__toggle" aria-label="Menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <div class="nav__right">
+        <a href="#contato" class="nav__cta">
+          <img src="assets/foto-hero.jpg" alt="" class="nav__cta-avatar">
+          Fale comigo
+        </a>
+        <button class="nav__toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
-  <!-- ============ HERO ============ -->
-  <section class="hero" id="hero">
-    <div class="container">
-      <div class="hero__grid">
-        <div class="hero__content">
-          <span class="hero__label">Analista de Sistemas & Desenvolvedor Full-Stack</span>
-          <h1 class="hero__title">
-            Transformo ideias complexas em <span class="hero__title-accent">software</span> que funciona
-          </h1>
-          <p class="hero__desc">
-            Do levantamento de requisitos ao deploy em produção — projeto, desenvolvo e entrego soluções que resolvem problemas reais.
-          </p>
-          <div class="hero__ctas">
-            <a href="#projetos" class="btn btn--lime">
-              Ver Projetos
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-            </a>
-            <a href="#contato" class="btn btn--outline-dark">Fale Comigo</a>
-          </div>
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="container hero__grid">
+      <div class="hero__content">
+        <h1 class="hero__title">PRAZER, EU ME CHAMO<br><span class="underline-yellow">MATHEUS LIRA.</span></h1>
+        <p class="hero__desc">Sou Analista de Sistemas e Desenvolvedor Full-Stack. Transformo processos manuais, dados dispersos e necessidades de negócio em sistemas, APIs e automações que tornam operações mais organizadas, integradas e eficientes.</p>
+        <div class="hero__ctas">
+          <a href="#contato" class="btn btn--white">Fale comigo <span class="btn__arrow">↗</span></a>
+          <a href="#projetos" class="btn btn--ghost">Explorar projetos</a>
         </div>
-
-        <div class="hero__photo">
-          <div class="hero__photo-wrapper">
-            <img src="assets/foto-matheus.jpg" alt="Matheus Vitor" class="hero__photo-img">
-          </div>
-          <span class="hero__photo-badge">Disponível para projetos</span>
-
-          <!-- Decorative -->
-          <svg class="hero__decor hero__decor--star hero__decor--star-1" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l3 9h9l-7.5 5.5L19.5 24 12 18l-7.5 6 3-9.5L0 9h9z"/></svg>
-          <svg class="hero__decor hero__decor--star hero__decor--star-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l3 9h9l-7.5 5.5L19.5 24 12 18l-7.5 6 3-9.5L0 9h9z"/></svg>
-          <div class="hero__decor hero__decor--dot hero__decor--dot-1"></div>
-          <div class="hero__decor hero__decor--dot hero__decor--dot-2"></div>
+      </div>
+      <div class="hero__visual">
+        <svg class="hero__arrow-shape" viewBox="0 0 400 400" aria-hidden="true">
+          <path d="M60 0H400V340H320V136L56 400L0 344L264 80H60Z" fill="currentColor"/>
+        </svg>
+        <img src="assets/foto-hero.jpg" alt="Matheus Lira" class="hero__photo">
+        <div class="hero__note">
+          <span class="hand">Esse sou eu,<br>o dev por trás<br>do código</span>
+          <svg width="70" height="44" viewBox="0 0 70 44" fill="none" aria-hidden="true">
+            <path d="M4 4C2 24 22 38 62 34" stroke="#FFD60A" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M54 26L64 34L54 41" stroke="#FFD60A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ METRICS ============ -->
-  <section class="metrics reveal">
-    <div class="metrics__card">
-      <div class="metrics__grid">
-        <div class="metrics__item">
-          <span class="metrics__number" data-target="3">0</span><span class="metrics__plus">+</span>
-          <span class="metrics__label">Projetos Entregues</span>
-        </div>
-        <div class="metrics__item">
-          <span class="metrics__number" data-target="2">0</span><span class="metrics__plus">+</span>
-          <span class="metrics__label">Empresas Atendidas</span>
-        </div>
-        <div class="metrics__item">
-          <span class="metrics__number" data-target="10">0</span><span class="metrics__plus">+</span>
-          <span class="metrics__label">Tecnologias Dominadas</span>
-        </div>
-        <div class="metrics__item">
-          <span class="metrics__number" data-target="4">0</span><span class="metrics__plus">+</span>
-          <span class="metrics__label">Anos de Experiência</span>
-        </div>
+  <!-- TECH BAND -->
+  <div class="band">
+    <div class="band__inner">
+      <div class="band__track">
+        <span>Java</span><span>Spring Boot</span><span>React</span><span>TypeScript</span><span>PostgreSQL</span><span>REST APIs</span><span>Python</span><span>Docker</span><span>IoT</span><span>Git</span>
+        <span>Java</span><span>Spring Boot</span><span>React</span><span>TypeScript</span><span>PostgreSQL</span><span>REST APIs</span><span>Python</span><span>Docker</span><span>IoT</span><span>Git</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- DESAFIOS -->
+  <section class="desafios section--white">
+    <div class="container desafios__grid">
+      <div>
+        <h2 class="title"><span class="t-blue">DESAFIOS QUE</span><br><span class="t-navy">VIRAM SOLUÇÕES.</span></h2>
+        <p class="desafios__text">É nesses cenários que aplico análise de sistemas e desenvolvimento para transformar processos soltos em soluções digitais mais organizadas, integradas e fáceis de acompanhar.</p>
+        <span class="tag-hand">Problemas que me desafiam.</span>
+      </div>
+      <div class="notepad">
+        <div class="notepad__header"></div>
+        <ul class="notepad__list">
+          <li><span class="notepad__x" aria-hidden="true"></span>Sistemas lentos, instáveis ou difíceis de manter.</li>
+          <li><span class="notepad__x" aria-hidden="true"></span>Dados espalhados entre planilhas, arquivos e conversas.</li>
+          <li><span class="notepad__x" aria-hidden="true"></span>Processos repetitivos que geram retrabalho.</li>
+          <li><span class="notepad__x" aria-hidden="true"></span>Falta de visibilidade sobre clientes, serviços e pendências.</li>
+          <li><span class="notepad__x" aria-hidden="true"></span>Rotinas manuais sem integração entre áreas.</li>
+          <li><span class="notepad__x" aria-hidden="true"></span>Dados desestruturados que dificultam decisões.</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- ============ PROJETOS ============ -->
-  <section class="projetos" id="projetos">
-    <div class="container">
-      <div class="projetos__header reveal">
-        <div class="projetos__header-left">
-          <p class="projetos__label">Projetos Selecionados</p>
-          <h2 class="projetos__title">Trabalhos<br>recentes</h2>
-        </div>
-        <p class="projetos__header-right">
-          Cada projeto é uma entrega real — com escopo, prazo e resultado mensurável. Do planejamento à produção.
-        </p>
-      </div>
-
-      <div class="projetos__grid">
-        <!-- Row 1: 65/35 -->
-        <div class="projetos__row projetos__row--1">
-          <a href="#" class="projeto-card reveal">
-            <div class="projeto-card__img">
-              <div class="projeto-card__placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+  <!-- PROJETOS EM AÇÃO -->
+  <section class="acao section--navy">
+    <div class="container acao__inner">
+      <span class="tag-hand tag-hand--tilt">O que eu desenvolvo?</span>
+      <h2 class="title title--center t-white">MEUS PROJETOS EM <span class="underline-yellow">AÇÃO.</span></h2>
+      <p class="acao__desc">Uma seleção de sistemas, plataformas e automações desenvolvidos a partir de desafios reais.<br>Em cada projeto, apresento o problema, a solução construída e as tecnologias aplicadas.</p>
+      <div class="acao__visual">
+        <div class="acao__dash">
+          <div class="mock-dash">
+            <aside class="mock-dash__side"><i></i><i></i><i></i><i></i><i></i></aside>
+            <div class="mock-dash__main">
+              <div class="mock-dash__kpis"><i></i><i></i><i></i><i></i></div>
+              <div class="mock-dash__row">
+                <div class="mock-dash__chart"><b style="height:40%"></b><b style="height:65%"></b><b style="height:50%"></b><b style="height:80%"></b><b style="height:60%"></b><b style="height:90%"></b><b style="height:70%"></b></div>
+                <div class="mock-dash__donut"></div>
               </div>
-              <span class="projeto-card__sticker">Full-Stack</span>
             </div>
-            <div class="projeto-card__content">
-              <div class="projeto-card__tags">
-                <span class="projeto-card__tag">React</span>
-                <span class="projeto-card__tag">Spring Boot</span>
-                <span class="projeto-card__tag">PostgreSQL</span>
-                <span class="projeto-card__tag">JWT Auth</span>
-              </div>
-              <h3 class="projeto-card__title">Painel Castro Advocacia</h3>
-              <p class="projeto-card__desc">Plataforma completa de gestão jurídica: dashboard analítico com gráficos em tempo real, CRUD de clientes e serviços, importação de dados e autenticação segura.</p>
-              <div class="projeto-card__footer">
-                <span class="projeto-card__meta">2024</span>
-                <div class="projeto-card__arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+          </div>
+        </div>
+        <div class="laptop">
+          <div class="laptop__screen">
+            <div class="laptop__bar"><i></i><i></i><i></i><span>painel.castroadv.com.br</span></div>
+            <div class="laptop__page">
+              <div class="laptop__hero">
+                <div>
+                  <strong>Painel Castro Advocacia</strong>
+                  <p>Processos, clientes e prazos em um só lugar.</p>
+                  <em>Acessar painel</em>
                 </div>
+                <div class="laptop__hero-chart"><b style="height:45%"></b><b style="height:70%"></b><b style="height:55%"></b><b style="height:85%"></b><b style="height:65%"></b></div>
               </div>
-            </div>
-          </a>
-
-          <a href="#" class="projeto-card reveal">
-            <div class="projeto-card__img">
-              <div class="projeto-card__placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-              </div>
-              <span class="projeto-card__sticker">IA</span>
-            </div>
-            <div class="projeto-card__content">
-              <div class="projeto-card__tags">
-                <span class="projeto-card__tag">Python</span>
-                <span class="projeto-card__tag">NLP</span>
-                <span class="projeto-card__tag">API REST</span>
-              </div>
-              <h3 class="projeto-card__title">Chatbot Jurídico</h3>
-              <p class="projeto-card__desc">Automação de atendimento jurídico com inteligência artificial e processamento de linguagem natural.</p>
-              <div class="projeto-card__footer">
-                <span class="projeto-card__meta">2024</span>
-                <div class="projeto-card__arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-                </div>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <!-- Row 2: 35/65 -->
-        <div class="projetos__row projetos__row--2">
-          <a href="#" class="projeto-card reveal">
-            <div class="projeto-card__img">
-              <div class="projeto-card__placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-              </div>
-              <span class="projeto-card__sticker">IoT</span>
-            </div>
-            <div class="projeto-card__content">
-              <div class="projeto-card__tags">
-                <span class="projeto-card__tag">Arduino</span>
-                <span class="projeto-card__tag">Sensores</span>
-                <span class="projeto-card__tag">IoT</span>
-              </div>
-              <h3 class="projeto-card__title">Feira do Empreendedor</h3>
-              <p class="projeto-card__desc">Sistema IoT com sensores Arduino para coleta e monitoramento de dados ambientais em tempo real. Desenvolvido para o SEBRAE.</p>
-              <div class="projeto-card__footer">
-                <span class="projeto-card__meta">2023</span>
-                <div class="projeto-card__arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-                </div>
-              </div>
-            </div>
-          </a>
-
-          <div class="projeto-card projeto-card--cta reveal" style="display:flex;align-items:center;justify-content:center;background:var(--surface-alt);min-height:320px;">
-            <div style="text-align:center;padding:40px;">
-              <p style="font-family:var(--font-heading);font-size:24px;font-weight:800;color:var(--white);margin-bottom:12px;letter-spacing:-0.03em;">Próximo projeto?</p>
-              <p style="font-family:var(--font-body);font-size:14px;color:var(--text-secondary);margin-bottom:24px;line-height:1.6;">Seu projeto pode ser o próximo aqui.</p>
-              <a href="#contato" class="btn btn--lime">
-                Vamos conversar
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-              </a>
+              <div class="laptop__cards"><i></i><i></i><i></i><i></i><i></i></div>
             </div>
           </div>
+          <div class="laptop__base"></div>
         </div>
       </div>
+      <a href="#projetos" class="btn btn--white">Explorar projeto <span class="btn__arrow">↗</span></a>
     </div>
   </section>
 
-  <!-- ============ SERVICES ============ -->
-  <section class="services" id="services">
+  <!-- O QUE EU CONSTRUO -->
+  <section class="construo section--white" id="atuacao">
     <div class="container">
-      <div class="services__card reveal">
-        <div class="services__grid">
-          <div class="services__left">
-            <p class="services__label">Serviços</p>
-            <h2 class="services__title">Como posso<br>ajudar</h2>
-            <p class="services__desc">
-              Do conceito à entrega final, cubro todas as etapas do desenvolvimento de software com foco em resultado.
-            </p>
-
-            <div class="services__list">
-              <div class="services__item">
-                <span class="services__item-number">01</span>
-                <span class="services__item-name">Desenvolvimento Full-Stack</span>
-                <span class="services__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg></span>
-              </div>
-              <div class="services__item">
-                <span class="services__item-number">02</span>
-                <span class="services__item-name">APIs & Integrações</span>
-                <span class="services__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg></span>
-              </div>
-              <div class="services__item">
-                <span class="services__item-number">03</span>
-                <span class="services__item-name">Dashboards & Painéis</span>
-                <span class="services__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg></span>
-              </div>
-              <div class="services__item">
-                <span class="services__item-number">04</span>
-                <span class="services__item-name">Automação com IA</span>
-                <span class="services__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg></span>
-              </div>
-              <div class="services__item">
-                <span class="services__item-number">05</span>
-                <span class="services__item-name">Sistemas IoT</span>
-                <span class="services__item-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg></span>
+      <span class="tag-hand">Minhas especialidades.</span>
+      <h2 class="title t-blue">O QUE EU CONSTRUO.</h2>
+      <div class="construo__head">
+        <p class="section-text">Do entendimento do problema à implementação, combino análise de sistemas, desenvolvimento e automação para criar soluções digitais aplicadas a desafios reais.</p>
+        <div class="arrows">
+          <button class="arrow-btn arrow-btn--light" id="svcPrev" aria-label="Anterior">←</button>
+          <button class="arrow-btn arrow-btn--outline" id="svcNext" aria-label="Próximo">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="construo__scroller" id="svcScroller">
+      <div class="construo__track">
+        <article class="svc-card">
+          <div class="svc-card__art">
+            <div class="art-win">
+              <div class="art-win__bar"><i></i><i></i><i></i></div>
+              <div class="art-fs">
+                <div class="art-fs__hero"><b></b><b></b></div>
+                <div class="art-fs__grid"><i></i><i></i><i></i></div>
+                <div class="art-fs__code">&lt;/&gt;</div>
               </div>
             </div>
           </div>
-
-          <div class="services__right">
-            <div class="services__image">
-              <div class="services__image-placeholder">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
+          <h3 class="svc-card__title">Desenvolvimento Full-Stack</h3>
+          <p class="svc-card__desc">Construção de plataformas web, do front-end às regras de negócio e ao banco de dados.</p>
+          <a href="#contato" class="btn btn--pill-outline">Saiba mais <span class="btn__arrow">↗</span></a>
+        </article>
+        <article class="svc-card">
+          <div class="svc-card__art">
+            <div class="art-win">
+              <div class="art-win__bar"><i></i><i></i><i></i></div>
+              <div class="art-api">
+                <div class="art-api__top"><i></i><i></i><i></i></div>
+                <div class="art-api__core">&lt;/&gt;<span class="art-api__ok">✓</span></div>
+                <div class="art-api__db"></div>
               </div>
             </div>
-            <div class="services__cta-card">
-              <p>Precisa de um sistema completo, do front ao deploy?</p>
-              <a href="#contato">
-                Vamos conversar →
-              </a>
+          </div>
+          <h3 class="svc-card__title">APIs &amp; Integrações</h3>
+          <p class="svc-card__desc">Desenvolvimento de APIs e conexões entre sistemas para organizar o fluxo de dados e processos.</p>
+          <a href="#contato" class="btn btn--pill-outline">Saiba mais <span class="btn__arrow">↗</span></a>
+        </article>
+        <article class="svc-card">
+          <div class="svc-card__art">
+            <div class="art-win">
+              <div class="art-win__bar"><i></i><i></i><i></i></div>
+              <div class="art-dash">
+                <div class="art-dash__kpis"><i></i><i></i><i></i><i></i></div>
+                <div class="art-dash__bars"><b style="height:30%"></b><b style="height:45%"></b><b style="height:40%"></b><b style="height:60%"></b><b style="height:55%"></b><b style="height:75%"></b><b style="height:70%"></b><b style="height:90%"></b></div>
+                <div class="art-dash__bottom"><span class="art-dash__donut"></span><span class="art-dash__cal"></span></div>
+              </div>
             </div>
           </div>
-        </div>
+          <h3 class="svc-card__title">Dashboards &amp; Painéis</h3>
+          <p class="svc-card__desc">Painéis para acompanhar clientes, serviços, indicadores e pendências de forma clara.</p>
+          <a href="#contato" class="btn btn--pill-outline">Saiba mais <span class="btn__arrow">↗</span></a>
+        </article>
+        <article class="svc-card">
+          <div class="svc-card__art">
+            <div class="art-win">
+              <div class="art-win__bar"><i></i><i></i><i></i></div>
+              <div class="art-ia">
+                <span class="art-ia__badge"></span>
+                <div class="art-ia__flow"><i>☰</i><b>→</b><i>✓</i><b>→</b><i>⚙</i></div>
+                <div class="art-ia__lines"><i></i><i></i></div>
+              </div>
+            </div>
+          </div>
+          <h3 class="svc-card__title">Automação com IA</h3>
+          <p class="svc-card__desc">Automação de tarefas e fluxos com IA, reduzindo atividades repetitivas e retrabalho.</p>
+          <a href="#contato" class="btn btn--pill-outline">Saiba mais <span class="btn__arrow">↗</span></a>
+        </article>
+        <article class="svc-card">
+          <div class="svc-card__art">
+            <div class="art-win">
+              <div class="art-win__bar"><i></i><i></i><i></i></div>
+              <div class="art-dash">
+                <div class="art-dash__kpis"><i></i><i></i><i></i><i></i></div>
+                <div class="art-ia__lines"><i></i><i></i><i></i></div>
+              </div>
+            </div>
+          </div>
+          <h3 class="svc-card__title">Análise de Sistemas</h3>
+          <p class="svc-card__desc">Levantamento de requisitos, modelagem de processos e documentação antes do código.</p>
+          <a href="#contato" class="btn btn--pill-outline">Saiba mais <span class="btn__arrow">↗</span></a>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ============ IMPACT PHRASE ============ -->
-  <section class="impact reveal">
+  <!-- TUDO QUE SEU PROJETO PRECISA -->
+  <section class="precisa">
+    <div class="precisa__pile" aria-hidden="true">
+      <span style="--x:4%;--y:-6px;--r:-8deg">Front-end</span>
+      <span style="--x:9%;--y:22px;--r:12deg">E-commerce</span>
+      <span style="--x:22%;--y:-10px;--r:4deg">Banco de dados</span>
+      <span style="--x:38%;--y:-14px;--r:-3deg">APIs REST</span>
+      <span style="--x:52%;--y:-4px;--r:-6deg">Dashboards</span>
+      <span style="--x:58%;--y:36px;--r:-10deg">Custom code</span>
+      <span style="--x:70%;--y:-12px;--r:7deg">Automação</span>
+      <span style="--x:84%;--y:4px;--r:-5deg">Deploy</span>
+    </div>
+    <div class="container precisa__inner">
+      <h2 class="title title--center precisa__title">TUDO QUE SEU<br>PROJETO <span class="t-white">PRECISA</span></h2>
+      <p class="precisa__desc">Cada projeto é feito sob medida e cobre tudo abaixo.</p>
+      <div class="precisa__tags">
+        <span>Análise de requisitos</span><span>Modelagem de dados</span><span>Java + Spring Boot</span><span>React + TypeScript</span>
+        <span>PostgreSQL</span><span>APIs REST</span><span>Autenticação JWT</span><span>Integrações</span>
+        <span>Dashboards</span><span>Automação com IA</span><span>Deploy</span><span>Documentação</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRABALHOS REAIS -->
+  <section class="trabalhos section--white" id="projetos">
     <div class="container">
-      <p class="impact__text">
-        Criar
-        <svg class="impact__star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l3 9h9l-7.5 5.5L19.5 24 12 18l-7.5 6 3-9.5L0 9h9z"/></svg>
-        Aprender
-        <svg class="impact__star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l3 9h9l-7.5 5.5L19.5 24 12 18l-7.5 6 3-9.5L0 9h9z"/></svg>
-        Evoluir
-      </p>
-      <div class="impact__line">
-        <svg class="impact__line-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l3 9h9l-7.5 5.5L19.5 24 12 18l-7.5 6 3-9.5L0 9h9z"/></svg>
+      <h2 class="title trabalhos__title"><span class="t-blue">TRABALHOS REAIS,</span> <span class="t-navy">RESULTADOS REAIS</span></h2>
+      <div class="trabalhos__head">
+        <a href="https://github.com/Matheusvc" target="_blank" rel="noopener noreferrer" class="btn btn--blue btn--sm">Ver no Github <span class="btn__arrow">↗</span></a>
+        <span class="trabalhos__note">
+          <span class="hand">Continue</span>
+          <svg width="34" height="26" viewBox="0 0 34 26" fill="none" aria-hidden="true">
+            <path d="M2 4C14 0 26 6 28 20" stroke="#FFD60A" stroke-width="2" stroke-linecap="round"/>
+            <path d="M22 16L28 22L32 15" stroke="#FFD60A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div class="arrows">
+          <button class="arrow-btn arrow-btn--light" id="projPrev" aria-label="Anterior">←</button>
+          <button class="arrow-btn arrow-btn--outline" id="projNext" aria-label="Próximo">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="trabalhos__scroller" id="projScroller">
+      <div class="trabalhos__track">
+        <article class="work-card">
+          <div class="work-card__shot work-card__shot--peach">
+            <div class="shot">
+              <div class="shot__nav"></div>
+              <strong>Painel jurídico com gestão de processos</strong>
+              <div class="shot__row"><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="work-card__meta"><h3>Painel Castro Advocacia</h3><span>FULL-STACK</span></div>
+          <p class="work-card__desc">Dashboard com login seguro, prazos e relatórios.</p>
+        </article>
+        <article class="work-card">
+          <div class="work-card__shot work-card__shot--blue">
+            <div class="shot shot--dark">
+              <div class="shot__nav"></div>
+              <strong>Atendimento automático com IA</strong>
+              <div class="shot__chat"><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="work-card__meta"><h3>Chatbot Jurídico</h3><span>IA</span></div>
+          <p class="work-card__desc">Triagem de clientes com NLP e respostas automáticas.</p>
+        </article>
+        <article class="work-card">
+          <div class="work-card__shot work-card__shot--magenta">
+            <div class="shot">
+              <div class="shot__nav"></div>
+              <strong>Bruna Makes — loja online</strong>
+              <div class="shot__row shot__row--products"><i></i><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="work-card__meta"><h3>Bruna Makes</h3><span>E-COMMERCE</span></div>
+          <p class="work-card__desc">Loja virtual com catálogo e carrinho.</p>
+        </article>
+        <article class="work-card">
+          <div class="work-card__shot work-card__shot--navy">
+            <div class="shot shot--dark">
+              <div class="shot__nav"></div>
+              <strong>Monitoramento IoT em tempo real</strong>
+              <div class="shot__row"><i></i><i></i><i></i></div>
+            </div>
+          </div>
+          <div class="work-card__meta"><h3>Feira do Empreendedor</h3><span>IOT</span></div>
+          <p class="work-card__desc">Sensores Arduino com painel web para o SEBRAE.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ============ TECH STACK ============ -->
-  <section class="stack" id="stack">
+  <!-- SOBRE MIM -->
+  <section class="sobre section--navy" id="sobre">
+    <div class="container sobre__grid">
+      <div class="sobre__text">
+        <h2 class="title"><span class="t-lavender">SOBRE MIM</span><br><span class="t-white">ANÁLISE ANTES DO CÓDIGO.</span></h2>
+        <p>Atuo como Analista de Sistemas e Desenvolvedor Full-Stack, com foco na criação de soluções digitais que organizam processos, integram dados e apoiam decisões de negócio.</p>
+        <p>Como Desenvolvedor Full-Stack, desenvolvo soluções digitais completas, conectando interfaces, dados e automações para tornar operações mais eficientes. Meu trabalho inclui plataformas internas, dashboards e chatbots voltados à organização da informação, à redução de tarefas manuais e à evolução contínua dos processos.</p>
+        <a href="#contato" class="btn btn--white">Fale comigo <span class="btn__arrow">↗</span></a>
+      </div>
+      <div class="sobre__frame">
+        <div class="sobre__frame-bar"><i></i><i></i><i></i><span>linkedin.com/in/matheusslira</span></div>
+        <div class="sobre__frame-body">
+          <span class="hand sobre__hello">olá
+            <svg width="40" height="30" viewBox="0 0 40 30" fill="none" aria-hidden="true"><path d="M2 4C14 2 28 8 34 24" stroke="#FFD60A" stroke-width="2" stroke-linecap="round"/><path d="M27 20L34 26L37 17" stroke="#FFD60A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <img src="assets/foto-sobre.jpg" alt="Matheus Lira" class="sobre__photo">
+        </div>
+      </div>
+    </div>
     <div class="container">
-      <div class="stack__header reveal">
-        <p class="stack__label">Ferramentas & Tecnologias</p>
-        <h2 class="stack__title">Minha Stack</h2>
-      </div>
-
-      <div class="stack__grid reveal">
-        <div class="stack__card">
-          <div class="stack__card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 13h6l2-8 4 16 2-8h6"/></svg>
-          </div>
-          <span class="stack__card-name">Java</span>
-          <span class="stack__card-desc">Back-end</span>
-        </div>
-
-        <div class="stack__card">
-          <div class="stack__card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-          </div>
-          <span class="stack__card-name">Spring Boot</span>
-          <span class="stack__card-desc">Framework</span>
-        </div>
-
-        <div class="stack__card">
-          <div class="stack__card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="2"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/><path d="M2 12h20"/></svg>
-          </div>
-          <span class="stack__card-name">React</span>
-          <span class="stack__card-desc">Front-end</span>
-        </div>
-
-        <div class="stack__card">
-          <div class="stack__card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 18l6-6-6-6"/><path d="M8 6l-6 6 6 6"/></svg>
-          </div>
-          <span class="stack__card-name">TypeScript</span>
-          <span class="stack__card-desc">Tipagem</span>
-        </div>
-
-        <div class="stack__card">
-          <div class="stack__card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-          </div>
-          <span class="stack__card-name">PostgreSQL</span>
-          <span class="stack__card-desc">Banco de Dados</span>
-        </div>
-
-        <div class="stack__card">
-          <div class="stack__card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-          </div>
-          <span class="stack__card-name">Tailwind CSS</span>
-          <span class="stack__card-desc">Estilização</span>
-        </div>
-
-        <div class="stack__card">
-          <div class="stack__card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 11a9 9 0 0118 0"/><path d="M4 11V8"/><path d="M22 11v3"/><circle cx="12" cy="19" r="2"/><path d="M10 19H6a2 2 0 01-2-2v-3"/><path d="M14 19h4a2 2 0 002-2v-3"/></svg>
-          </div>
-          <span class="stack__card-name">REST APIs</span>
-          <span class="stack__card-desc">Integração</span>
-        </div>
-
-        <div class="stack__card">
-          <div class="stack__card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a5 5 0 015 5v3H7V7a5 5 0 015-5z"/><rect x="3" y="10" width="18" height="12" rx="2"/><circle cx="12" cy="16" r="1"/></svg>
-          </div>
-          <span class="stack__card-name">JWT Auth</span>
-          <span class="stack__card-desc">Segurança</span>
-        </div>
-
-        <div class="stack__card">
-          <div class="stack__card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><path d="M6 9v12"/></svg>
-          </div>
-          <span class="stack__card-name">Git</span>
-          <span class="stack__card-desc">Versionamento</span>
-        </div>
-
-        <div class="stack__card">
-          <div class="stack__card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 13h6l2-8 4 16 2-8h6"/></svg>
-          </div>
-          <span class="stack__card-name">IoT</span>
-          <span class="stack__card-desc">Arduino & Sensores</span>
-        </div>
-
-        <div class="stack__card">
-          <div class="stack__card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          </div>
-          <span class="stack__card-name">Vite</span>
-          <span class="stack__card-desc">Build Tool</span>
-        </div>
-
-        <div class="stack__card">
-          <div class="stack__card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/><path d="M2 12h20"/><circle cx="12" cy="12" r="10"/></svg>
-          </div>
-          <span class="stack__card-name">Python</span>
-          <span class="stack__card-desc">Automação & IA</span>
-        </div>
+      <div class="stats">
+        <div class="stats__item"><strong>10+</strong><span>Projetos entregues</span></div>
+        <div class="stats__item"><strong>5+</strong><span>Empresas atendidas</span></div>
+        <div class="stats__item"><strong>2+</strong><span>Anos de experiência</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ============ ABOUT ============ -->
-  <section class="sobre" id="sobre">
+  <!-- DEPOIMENTO -->
+  <section class="depo section--white">
     <div class="container">
-      <div class="sobre__grid reveal">
-        <div class="sobre__photo-wrap">
-          <div class="sobre__photo">
-            <img src="assets/foto-matheus.jpg" alt="Matheus Vitor">
+      <span class="tag-hand">Depoimento.</span>
+      <h2 class="title t-navy">O QUE DIZEM SOBRE O MEU TRABALHO</h2>
+      <div class="depo__card" id="depoCard">
+        <p class="depo__quote" id="depoQuote">"Matheus entendeu exatamente o que precisávamos e entregou um sistema completo, com login seguro e relatórios claros. Comunicação direta, prazos cumpridos — recomendo de olhos fechados."</p>
+        <div class="depo__bottom">
+          <div>
+            <strong class="depo__name" id="depoName">Castro Advocacia</strong>
+            <span class="depo__place" id="depoPlace">SÃO LUÍS, MA</span>
           </div>
-          <div class="sobre__photo-decor sobre__photo-decor--circle"></div>
-          <svg class="sobre__photo-decor sobre__photo-decor--star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l3 9h9l-7.5 5.5L19.5 24 12 18l-7.5 6 3-9.5L0 9h9z"/></svg>
-        </div>
-
-        <div class="sobre__text">
-          <p class="sobre__label">Sobre Mim</p>
-          <h2 class="sobre__title">Quem está por<br>trás do código</h2>
-          <p class="sobre__bio">
-            Analista de Sistemas e Desenvolvedor Full-Stack com formação em Engenharia de Software pela Universidade CEUMA. Atuo para duas empresas entregando soluções que vão do levantamento de requisitos ao deploy em produção.
-          </p>
-          <p class="sobre__bio">
-            Minha stack combina Java + Spring Boot no back-end com React + TypeScript no front-end, sustentada por PostgreSQL e pipelines de deploy reais. Já entreguei plataformas de gestão com dashboards analíticos, chatbots com IA para atendimento automatizado e sistemas IoT com coleta de dados em tempo real.
-          </p>
-
-          <div class="sobre__info">
-            <span class="sobre__info-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              São Luís, MA
-            </span>
-            <span class="sobre__info-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-              Eng. de Software — CEUMA
-            </span>
-            <span class="sobre__info-item">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
-              2 Empresas
-            </span>
+          <div class="depo__nav">
+            <button class="arrow-btn arrow-btn--yellow" id="depoPrev" aria-label="Depoimento anterior">←</button>
+            <button class="arrow-btn arrow-btn--yellow" id="depoNext" aria-label="Próximo depoimento">→</button>
           </div>
-
-          <a href="#contato" class="btn btn--lime">
-            Fale comigo
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
-          </a>
         </div>
+      </div>
+      <div class="depo__row">
+        <div class="depo__people" id="depoPeople">
+          <button class="depo__person is-active" data-index="0"><span class="depo__avatar">CA</span>Castro Advocacia</button>
+        </div>
+        <span class="hand depo__next">Você pode ser o próximo!</span>
       </div>
     </div>
   </section>
 
-  <!-- ============ CONTACT ============ -->
-  <section class="contato" id="contato">
+  <!-- PROCESSO -->
+  <section class="processo" id="trajetoria">
     <div class="container">
-      <!-- Marquee -->
-      <div class="contato__marquee">
-        <div class="contato__marquee-track">
-          <span class="contato__marquee-item">Disponível para projetos</span>
-          <span class="contato__marquee-sep">✦</span>
-          <span class="contato__marquee-item">Full-Stack</span>
-          <span class="contato__marquee-sep">✦</span>
-          <span class="contato__marquee-item">Freelance</span>
-          <span class="contato__marquee-sep">✦</span>
-          <span class="contato__marquee-item">Consultoria</span>
-          <span class="contato__marquee-sep">✦</span>
-          <span class="contato__marquee-item">Disponível para projetos</span>
-          <span class="contato__marquee-sep">✦</span>
-          <span class="contato__marquee-item">Full-Stack</span>
-          <span class="contato__marquee-sep">✦</span>
-          <span class="contato__marquee-item">Freelance</span>
-          <span class="contato__marquee-sep">✦</span>
-          <span class="contato__marquee-item">Consultoria</span>
-          <span class="contato__marquee-sep">✦</span>
-          <span class="contato__marquee-item">Disponível para projetos</span>
-          <span class="contato__marquee-sep">✦</span>
-          <span class="contato__marquee-item">Full-Stack</span>
-          <span class="contato__marquee-sep">✦</span>
-          <span class="contato__marquee-item">Freelance</span>
-          <span class="contato__marquee-sep">✦</span>
-          <span class="contato__marquee-item">Consultoria</span>
-          <span class="contato__marquee-sep">✦</span>
-        </div>
+      <span class="tag-hand">Minha abordagem.</span>
+      <h2 class="title t-lavender">ENTENDA CADA PROCESSO</h2>
+      <div class="processo__grid">
+        <article class="step step--active">
+          <div class="step__top">
+            <span class="step__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg></span>
+            <span class="step__label">PASSO 1 DE 3</span>
+          </div>
+          <h3>Descoberta</h3>
+          <p>Analiso o objetivo, o processo atual e as necessidades que a solução precisa atender.</p>
+        </article>
+        <article class="step">
+          <div class="step__top">
+            <span class="step__icon step__icon--blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6" height="16" rx="1"/><rect x="14" y="4" width="6" height="16" rx="1"/></svg></span>
+            <span class="step__label">PASSO 2 DE 3</span>
+          </div>
+          <h3>Desenvolvimento</h3>
+          <p>Organizo requisitos, dados e funcionalidades para construir uma solução clara e consistente.</p>
+        </article>
+        <article class="step">
+          <div class="step__top">
+            <span class="step__icon step__icon--blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 19c0-4 2-9 9-14 1 6-1 10-5 13"/><path d="M9 15l-4 4"/></svg></span>
+            <span class="step__label">PASSO 3 DE 3</span>
+          </div>
+          <h3>Entrega</h3>
+          <p>Valido a solução, documento os pontos necessários e preparo o projeto para evoluções futuras.</p>
+        </article>
       </div>
+      <div class="processo__cta">
+        <a href="#projetos" class="btn btn--white">Explorar projetos <span class="btn__arrow">↗</span></a>
+      </div>
+    </div>
+  </section>
 
-      <div class="contato__grid reveal">
-        <div class="contato__left">
-          <h2 class="contato__title">Vamos tirar seu<br>projeto do papel</h2>
-          <p class="contato__desc">
-            Tem uma ideia, um sistema para construir ou um processo para automatizar? Me conta — a primeira conversa é sempre sem compromisso.
-          </p>
-
-          <form class="contato__form" id="contactForm">
-            <input type="email" class="contato__input" placeholder="Seu melhor e-mail" required>
-            <button type="submit" class="contato__submit">Enviar →</button>
-          </form>
-          <div id="formFeedback" class="form-feedback" style="font-size:13px;margin-top:-20px;margin-bottom:16px;"></div>
-
-          <div class="contato__links">
-            <a href="mailto:matheusvitorcl1@gmail.com" class="contato__link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              E-mail
-            </a>
-            <a href="https://github.com/matheusvitor" target="_blank" rel="noopener noreferrer" class="contato__link">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576A12.01 12.01 0 0024 12c0-6.627-5.373-12-12-12z"/></svg>
-              GitHub
-            </a>
-            <a href="https://linkedin.com/in/matheusvitor" target="_blank" rel="noopener noreferrer" class="contato__link">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              LinkedIn
-            </a>
-          </div>
+  <!-- FAQ -->
+  <section class="faq section--white">
+    <div class="container faq__grid">
+      <div>
+        <h2 class="title"><span class="t-blue">O QUE VOCÊ</span><br><span class="t-navy">PRECISA SABER.</span></h2>
+        <p class="faq__text">Informações rápidas sobre minha atuação, experiências e projetos.</p>
+        <span class="tag-hand">Perguntas frequentes.</span>
+      </div>
+      <div class="faq__list">
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">Quais são suas principais áreas de atuação?<span class="faq-item__icon">+</span></button>
+          <div class="faq-item__a"><p>Desenvolvimento full-stack, análise de sistemas, criação de APIs e integrações, dashboards de gestão e automação de processos com IA.</p></div>
         </div>
-
-        <div class="contato__visual">
-          <div class="contato__visual-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          </div>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">Quais tecnologias fazem parte da sua stack?<span class="faq-item__icon">+</span></button>
+          <div class="faq-item__a"><p>Java + Spring Boot no back-end, React + TypeScript no front-end, PostgreSQL como banco, além de Python para IA/automação e Arduino para projetos IoT.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">Quais projetos você já desenvolveu?<span class="faq-item__icon">+</span></button>
+          <div class="faq-item__a"><p>Painel de gestão para escritório de advocacia, chatbot jurídico com NLP, loja virtual e sistema IoT de monitoramento apresentado na Feira do Empreendedor do SEBRAE.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">Em quais experiências profissionais você atuou?<span class="faq-item__icon">+</span></button>
+          <div class="faq-item__a"><p>Atuo como Analista de Sistemas e Desenvolvedor Full-Stack em empresas de São Luís, MA, entregando soluções do levantamento de requisitos ao deploy.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">Você participa de eventos e hackathons?<span class="faq-item__icon">+</span></button>
+          <div class="faq-item__a"><p>Sim. Participei da Feira do Empreendedor (SEBRAE), do PHPeste e do Hackathon Transparência — Maratona de Inovação Maranhense.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-item__q" aria-expanded="false">Onde posso acompanhar seu trabalho?<span class="faq-item__icon">+</span></button>
+          <div class="faq-item__a"><p>No <a href="https://github.com/Matheusvc" target="_blank" rel="noopener noreferrer">GitHub</a> e no <a href="https://www.linkedin.com/in/matheusslira/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ FOOTER ============ -->
+  <!-- EVENTOS -->
+  <section class="eventos section--navy">
+    <div class="container">
+      <span class="tag-hand">Participação em eventos</span>
+      <h2 class="title t-white">EVENTOS QUE GERARAM OPORTUNIDADES</h2>
+      <div class="eventos__grid">
+        <article class="evento">
+          <div class="evento__img" style="--img:url('assets/evento-sebrae.jpg')"></div>
+          <span class="evento__tag">Feira · SEBRAE</span>
+          <div class="evento__row"><h3>FEIRA DO EMPREENDEDOR - MULTI CENTER SEBRAE</h3><span class="evento__go">↗</span></div>
+        </article>
+        <article class="evento">
+          <div class="evento__img" style="--img:url('assets/evento-phpeste.jpg')"></div>
+          <span class="evento__tag">Conferência</span>
+          <div class="evento__row"><h3>PHPESTE - UM DOS MAIORES EVENTOS DE PHP DO BRASIL</h3><span class="evento__go">↗</span></div>
+        </article>
+        <article class="evento">
+          <div class="evento__img" style="--img:url('assets/evento-hackathon.jpg')"></div>
+          <span class="evento__tag">Hackathon</span>
+          <div class="evento__row"><h3>HACKATHON TRANSPARÊNCIA - MARATONA DE INOVAÇÃO MARANHENSE</h3><span class="evento__go">↗</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="contato section--white" id="contato">
+    <div class="container">
+      <div class="contato__card">
+        <span class="tag-hand">Contato</span>
+        <h2 class="title t-white contato__title">PRONTO PARA UM SISTEMA<br>PERSONALIZADO PARA VOCÊ?</h2>
+        <p>Se você se interessou pelos meus projetos, experiências ou pela forma como transformo desafios em soluções digitais, vamos conversar sobre tecnologia, inovação e novas oportunidades.</p>
+        <div class="contato__ctas">
+          <a href="mailto:matheusvitorcl1@gmail.com" class="btn btn--white">Entrar em contato <span class="btn__arrow">↗</span></a>
+          <a href="https://www.linkedin.com/in/matheusslira/" target="_blank" rel="noopener noreferrer" class="btn btn--ghost">Acessar Linkedin <span class="btn__arrow">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
-      <div class="footer__inner">
-        <a href="#" class="footer__logo">
-          <img src="assets/logo.svg" alt="Matheus Vitor">
-        </a>
-
-        <div class="footer__social">
-          <a href="https://github.com/matheusvitor" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576A12.01 12.01 0 0024 12c0-6.627-5.373-12-12-12z"/></svg>
-          </a>
-          <a href="https://linkedin.com/in/matheusvitor" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          </a>
+      <a href="mailto:matheusvitorcl1@gmail.com" class="footer__meet">
+        <img src="assets/foto-hero.jpg" alt="" class="footer__avatar">
+        <span class="hand">Agende uma reunião</span>
+        <svg width="44" height="30" viewBox="0 0 44 30" fill="none" aria-hidden="true"><path d="M2 26C14 24 28 18 38 4" stroke="#FFD60A" stroke-width="2.5" stroke-linecap="round"/><path d="M30 5L39 3L40 12" stroke="#FFD60A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <div class="footer__card">
+        <div class="footer__brand">
+          <img src="assets/logo.png" alt="Matheus Lira" class="footer__logo">
+          <strong>MATHEUS LIRA</strong>
+          <span>Analista de Sistemas e Desenvolvedor Full-Stack</span>
+        </div>
+        <div class="footer__col">
+          <h4>PÁGINA</h4>
+          <a href="#inicio">Início</a><a href="#sobre">Sobre mim</a><a href="#atuacao">Atuação</a><a href="#projetos">Projetos</a><a href="#trajetoria">Trajetória</a><a href="#contato">Contato</a>
+        </div>
+        <div class="footer__col">
+          <h4>SERVIÇO</h4>
+          <a href="#atuacao">Desenvolvimento Full-Stack</a><a href="#atuacao">Análise de Sistemas</a><a href="#atuacao">APIs e Integrações</a><a href="#atuacao">Automação de Processos</a><a href="#atuacao">Dashboards e Dados</a><a href="#atuacao">Sistemas Internos</a>
+        </div>
+        <div class="footer__col">
+          <h4>CONECTE-SE</h4>
+          <a href="https://www.linkedin.com/in/matheusslira/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a href="https://github.com/Matheusvc" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="mailto:matheusvitorcl1@gmail.com">E-mail ↗</a>
+        </div>
+        <div class="footer__col">
+          <h4>INFORMAÇÕES</h4>
+          <a href="https://www.linkedin.com/in/matheusslira/" target="_blank" rel="noopener noreferrer">Currículo</a>
+          <a href="#">Política de Privacidade</a>
+          <a href="#">Termos de Uso</a>
         </div>
       </div>
-
-      <hr class="footer__divider">
-
-      <div class="footer__bottom">
-        <span class="footer__copy">&copy; 2024 Matheus Vitor. Todos os direitos reservados.</span>
-        <div class="footer__links">
-          <a href="#hero">Início</a>
-          <a href="#projetos">Projetos</a>
-          <a href="#contato">Contato</a>
-        </div>
-      </div>
+      <p class="footer__copy">© <span id="currentYear"></span> MATHEUS LIRA. TODOS OS DIREITOS RESERVADOS.</p>
     </div>
   </footer>
 
