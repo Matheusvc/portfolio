@@ -199,6 +199,106 @@
     if (reduceMotion) acaoTabs.classList.add('is-paused');
   }
 
+  // --- FALLING TAGS (physics pile) ---
+  var pile = document.getElementById('precisaPile');
+  if (pile) {
+    var section = pile.parentElement;
+    var pills = Array.prototype.slice.call(pile.querySelectorAll('.precisa__pill'));
+    var M = window.Matter;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!M || reduce) {
+      pile.classList.add('is-static');
+    } else {
+      pile.classList.add('is-physics');
+      var engine = M.Engine.create();
+      engine.gravity.y = 1.1;
+      var bodies = [];
+      var walls = [];
+      var started = false;
+      var running = false;
+      var rafId = 0;
+
+      var buildWalls = function () {
+        if (walls.length) M.Composite.remove(engine.world, walls);
+        var w = pile.clientWidth, h = pile.clientHeight, t = 400;
+        walls = [
+          M.Bodies.rectangle(w / 2, h + t / 2, w + t * 2, t, { isStatic: true }),
+          M.Bodies.rectangle(-t / 2, h / 2 - 1000, t, h + 2000, { isStatic: true }),
+          M.Bodies.rectangle(w + t / 2, h / 2 - 1000, t, h + 2000, { isStatic: true })
+        ];
+        M.Composite.add(engine.world, walls);
+      };
+
+      var render = function () {
+        bodies.forEach(function (b) {
+          b.el.style.transform = 'translate(' + (b.position.x - b.w / 2) + 'px,' + (b.position.y - b.h / 2) + 'px) rotate(' + b.angle + 'rad)';
+        });
+      };
+
+      var tick = function () {
+        M.Engine.update(engine, 1000 / 60);
+        render();
+        rafId = running ? requestAnimationFrame(tick) : 0;
+      };
+
+      var setRunning = function (on) {
+        if (on === running) return;
+        running = on;
+        if (on) rafId = requestAnimationFrame(tick);
+        else cancelAnimationFrame(rafId);
+      };
+
+      var drop = function () {
+        started = true;
+        buildWalls();
+        var w = pile.clientWidth;
+        pills.forEach(function (el, i) {
+          var pw = el.offsetWidth, ph = el.offsetHeight;
+          var x = pw / 2 + Math.random() * Math.max(1, w - pw);
+          var y = -ph - i * 55 - Math.random() * 80;
+          var b = M.Bodies.rectangle(x, y, pw, ph, {
+            chamfer: { radius: ph / 2 },
+            restitution: 0.35, friction: 0.5, frictionAir: 0.012,
+            angle: (Math.random() - 0.5) * 0.8
+          });
+          b.el = el; b.w = pw; b.h = ph;
+          bodies.push(b);
+        });
+        M.Composite.add(engine.world, bodies);
+
+        if (window.matchMedia('(pointer: fine)').matches) {
+          var mouse = M.Mouse.create(pile);
+          // keep page scrolling working over the section
+          mouse.element.removeEventListener('mousewheel', mouse.mousewheel);
+          mouse.element.removeEventListener('DOMMouseScroll', mouse.mousewheel);
+          mouse.element.removeEventListener('wheel', mouse.mousewheel);
+          var grab = M.MouseConstraint.create(engine, { mouse: mouse, constraint: { stiffness: 0.2, render: { visible: false } } });
+          M.Composite.add(engine.world, grab);
+        }
+      };
+
+      new IntersectionObserver(function (entries) {
+        var visible = entries[0].isIntersecting;
+        if (visible && !started) drop();
+        if (started) setRunning(visible);
+      }, { threshold: 0.25 }).observe(section);
+
+      var resizeTimer = 0;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+          if (!started) return;
+          buildWalls();
+          var w = pile.clientWidth;
+          bodies.forEach(function (b) {
+            if (b.position.x > w - b.w / 2) M.Body.setPosition(b, { x: w - b.w / 2, y: b.position.y - 40 });
+          });
+        }, 150);
+      });
+    }
+  }
+
   // --- TESTIMONIALS ---
   var depos = [
     {
