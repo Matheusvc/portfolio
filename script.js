@@ -69,32 +69,93 @@
 
   // --- PROJECT SCREENS CAROUSEL (left -> laptop -> right -> left) ---
   var acao = document.getElementById('acaoCarousel');
-  if (acao) {
+  var acaoTabs = document.getElementById('acaoTabs');
+  if (acao && acaoTabs) {
     var slots = [];
     acao.querySelectorAll('.acao__slot').forEach(function (s) { slots[Number(s.dataset.slot)] = s; });
-    var screens = acao.querySelectorAll('.acao__screen');
+    var screens = Array.prototype.slice.call(acao.querySelectorAll('.acao__screen'));
+    var tabs = Array.prototype.slice.call(acaoTabs.querySelectorAll('.acao__tab'));
+    var glare = acao.querySelector('.acao__glare');
     var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var STEP_MS = 950;
+    var busy = false;
+
+    var rectIn = function (el, base) {
+      var r = el.getBoundingClientRect();
+      return { left: r.left - base.left, top: r.top - base.top, width: r.width, height: r.height };
+    };
 
     var place = function () {
       var base = acao.getBoundingClientRect();
       screens.forEach(function (img) {
-        var r = slots[Number(img.dataset.pos)].getBoundingClientRect();
-        img.style.left = (r.left - base.left) + 'px';
-        img.style.top = (r.top - base.top) + 'px';
+        var r = rectIn(slots[Number(img.dataset.pos)], base);
+        img.style.left = r.left + 'px';
+        img.style.top = r.top + 'px';
         img.style.width = r.width + 'px';
         img.style.height = r.height + 'px';
       });
+      var g = rectIn(slots[1], base);
+      glare.style.left = g.left + 'px';
+      glare.style.top = g.top + 'px';
+      glare.style.width = g.width + 'px';
+      glare.style.height = g.height + 'px';
     };
 
     var depthFor = function (img) { return img.dataset.pos === '1' ? 3 : 1; };
-    var setDepth = function () {
-      screens.forEach(function (img) { img.style.zIndex = depthFor(img); });
-    };
     screens.forEach(function (img) {
+      img.style.zIndex = depthFor(img);
       img.addEventListener('transitionend', function (e) {
         if (e.propertyName === 'left') img.style.zIndex = depthFor(img);
       });
     });
+
+    var restartClass = function (el, cls) {
+      el.classList.remove(cls);
+      void el.offsetWidth;
+      el.classList.add(cls);
+    };
+
+    var syncActive = function () {
+      var active = screens.filter(function (img) { return img.dataset.pos === '1'; })[0];
+      var idx = screens.indexOf(active);
+      acao.style.setProperty('--glow', active.dataset.glow);
+      tabs.forEach(function (tab, i) {
+        var on = Number(tab.dataset.screen) === idx;
+        tab.setAttribute('aria-selected', on ? 'true' : 'false');
+        if (on) restartClass(tab, 'is-active');
+        else tab.classList.remove('is-active');
+      });
+    };
+
+    var rotate = function () {
+      screens.forEach(function (img) {
+        var from = Number(img.dataset.pos);
+        var to = (from + 1) % 3;
+        img.dataset.pos = String(to);
+        img.classList.remove('is-entering', 'is-leaving', 'is-wrapping');
+        void img.offsetWidth;
+        if (to === 1) img.classList.add('is-entering');
+        else if (from === 1) img.classList.add('is-leaving');
+        else img.classList.add('is-wrapping');
+        // entering/leaving the laptop stay in front of the frame; the one going right -> left passes behind it
+        img.style.zIndex = (to === 1 || from === 1) ? 3 : 1;
+      });
+      place();
+      restartClass(glare, 'is-on');
+      syncActive();
+    };
+
+    var goTo = function (screenIdx) {
+      if (busy) return;
+      var steps = (1 - Number(screens[screenIdx].dataset.pos) + 3) % 3;
+      if (!steps) return;
+      busy = true;
+      rotate();
+      setTimeout(function () {
+        if (steps === 2) rotate();
+        setTimeout(function () { busy = false; }, steps === 2 ? STEP_MS : 0);
+      }, STEP_MS);
+    };
 
     var placeStatic = function () {
       acao.classList.add('is-static');
@@ -103,32 +164,39 @@
       acao.classList.remove('is-static');
     };
 
-    var rotate = function () {
-      screens.forEach(function (img) {
-        var from = Number(img.dataset.pos);
-        var to = (from + 1) % 3;
-        img.dataset.pos = String(to);
-        // leaving the laptop: stay in front until it clears the frame; going right->left: pass behind it
-        img.style.zIndex = (to === 1 || from === 1) ? 3 : 1;
-      });
-      place();
-    };
-
-    setDepth();
     placeStatic();
+    syncActive();
     window.addEventListener('load', placeStatic);
     window.addEventListener('resize', placeStatic);
 
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () { goTo(Number(tab.dataset.screen)); });
+    });
+
+    // auto-advance when the active tab's progress bar finishes; pausing the bar pauses the carousel
+    acaoTabs.addEventListener('animationend', function (e) {
+      if (e.animationName === 'tabProgress' && !busy) rotate();
+    });
+
     var visible = false;
+    var hovering = false;
+    var updatePause = function () {
+      acaoTabs.classList.toggle('is-paused', !visible || hovering || document.hidden);
+    };
     new IntersectionObserver(function (entries) {
       visible = entries[0].isIntersecting;
+      updatePause();
     }, { threshold: 0.3 }).observe(acao);
+    document.addEventListener('visibilitychange', updatePause);
+    [acao, acaoTabs].forEach(function (el) {
+      el.addEventListener('mouseenter', function () { hovering = true; updatePause(); });
+      el.addEventListener('mouseleave', function () { hovering = false; updatePause(); });
+      el.addEventListener('focusin', function () { hovering = true; updatePause(); });
+      el.addEventListener('focusout', function () { hovering = false; updatePause(); });
+    });
+    updatePause();
 
-    if (!reduceMotion) {
-      setInterval(function () {
-        if (visible && !document.hidden) rotate();
-      }, 3500);
-    }
+    if (reduceMotion) acaoTabs.classList.add('is-paused');
   }
 
   // --- TESTIMONIALS ---
