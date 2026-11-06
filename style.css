@@ -231,8 +231,21 @@ section { padding: 120px 0; }
 }
 .acao__card--left { left: 0; }
 .acao__card--right { right: 0; }
-.acao__card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 4px; }
+.acao__slot { width: 100%; aspect-ratio: 16 / 9; }
 .acao__laptop { position: absolute; left: 50%; top: 0; margin-top: -2%; width: 56%; transform: translateX(-50%); z-index: 2; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .35)); }
+.acao__laptop-img { width: 100%; }
+.acao__slot--screen { position: absolute; left: 16.375%; top: 10%; width: 67.375%; height: 72.333%; aspect-ratio: auto; }
+.acao__screen {
+  position: absolute; left: 0; top: 0; width: 0; height: 0;
+  object-fit: cover; object-position: top; border-radius: 4px;
+  z-index: 1;
+  transition: left .9s cubic-bezier(.65, 0, .35, 1), top .9s cubic-bezier(.65, 0, .35, 1),
+              width .9s cubic-bezier(.65, 0, .35, 1), height .9s cubic-bezier(.65, 0, .35, 1),
+              border-radius .9s, box-shadow .9s;
+}
+.acao__screen[data-pos="1"] { border-radius: 2px; }
+.acao__visual.is-static .acao__screen { transition: none; }
+@media (prefers-reduced-motion: reduce) { .acao__screen { transition: none; } }
 
 /* ===== O QUE EU CONSTRUO ===== */
 .construo { padding-bottom: 140px; }
@@ -418,7 +431,8 @@ section { padding: 120px 0; }
   .hero__visual { min-height: 420px; }
   .hero__photo { width: 70%; }
   .acao__visual { height: auto; aspect-ratio: auto; display: flex; flex-direction: column; gap: 24px; }
-  .acao__card, .acao__laptop { position: static; width: 100%; transform: none; margin-top: 0; }
+  .acao__card { position: static; width: 100%; transform: none; }
+  .acao__laptop { position: relative; left: auto; width: 100%; transform: none; margin-top: 0; }
   .acao__laptop { order: -1; }
   .processo__grid, .eventos__grid { grid-template-columns: 1fr; }
   .sobre__frame { justify-self: start; }

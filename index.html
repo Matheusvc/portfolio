@@ -96,10 +96,16 @@
       <span class="tag-hand tag-hand--tilt">O que eu desenvolvo?</span>
       <h2 class="title title--center t-white">MEUS PROJETOS EM <span class="underline-yellow">AÇÃO.</span></h2>
       <p class="acao__desc">Uma seleção de sistemas, plataformas e automações desenvolvidos a partir de desafios reais.<br>Em cada projeto, apresento o problema, a solução construída e as tecnologias aplicadas.</p>
-      <div class="acao__visual">
-        <div class="acao__card acao__card--left"><img src="assets/figma/acao-dashboard.jpg" alt="Dashboard de gestão de barbearia"></div>
-        <div class="acao__card acao__card--right"><img src="assets/figma/portal-transparencia.jpg" alt="Portal da Transparência"></div>
-        <img src="assets/figma/acao-laptop.png" alt="Loja virtual Bruna Makes em um notebook" class="acao__laptop">
+      <div class="acao__visual" id="acaoCarousel">
+        <div class="acao__card acao__card--left"><div class="acao__slot" data-slot="0"></div></div>
+        <div class="acao__card acao__card--right"><div class="acao__slot" data-slot="2"></div></div>
+        <div class="acao__laptop">
+          <img src="assets/figma/laptop-frame.png" alt="" class="acao__laptop-img">
+          <div class="acao__slot acao__slot--screen" data-slot="1"></div>
+        </div>
+        <img src="assets/figma/acao-dashboard.jpg" alt="Dashboard de gestão de barbearia" class="acao__screen" data-pos="0">
+        <img src="assets/figma/bruna-makes.jpg" alt="Loja virtual Bruna Makes" class="acao__screen" data-pos="1">
+        <img src="assets/figma/portal-transparencia.jpg" alt="Portal da Transparência" class="acao__screen" data-pos="2">
       </div>
       <a href="#projetos" class="btn btn--white">Explorar projeto <span class="btn__arrow">↗</span></a>
     </div>
@@ -178,7 +184,7 @@
           <div class="work-card__win"><div class="work-card__bar">GESTÃO DE BARBEARIA</div><img src="assets/figma/acao-dashboard.jpg" alt="Dashboard de gestão de barbearia"></div>
         </article>
         <article class="work-card work-card--blue">
-          <div class="work-card__win"><div class="work-card__bar">BRUNA MAKES</div><img src="assets/figma/bruna-makes.jpg" alt="Loja virtual Bruna Makes" onerror="this.onerror=null;this.src='assets/figma/acao-laptop.png'"></div>
+          <div class="work-card__win"><div class="work-card__bar">BRUNA MAKES</div><img src="assets/figma/bruna-makes.jpg" alt="Loja virtual Bruna Makes" ></div>
         </article>
         <article class="work-card work-card--magenta">
           <div class="work-card__win"><div class="work-card__bar">PORTAL DA TRANSPARÊNCIA</div><img src="assets/figma/portal-transparencia.jpg" alt="Portal da Transparência" onerror="this.closest('.work-card').hidden=true"></div>
