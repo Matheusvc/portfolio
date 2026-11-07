@@ -166,6 +166,18 @@ section { padding: 120px 0; }
   background: linear-gradient(180deg, var(--blue) 0%, var(--blue-2) 100%);
   color: var(--white);
 }
+.hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .09) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: center top;
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, #000 25%, transparent 100%);
+          mask-image: radial-gradient(ellipse 85% 75% at 50% 35%, #000 25%, transparent 100%);
+}
+.hero > .container { position: relative; z-index: 1; }
+@media (max-width: 600px) { .hero::before { background-size: 24px 24px; } }
 .hero__grid { display: grid; grid-template-columns: 1.25fr 1fr; align-items: end; gap: 32px; }
 .hero__content { padding-bottom: 96px; }
 .hero__title {
