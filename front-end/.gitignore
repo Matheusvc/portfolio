@@ -1,0 +1,4 @@
+# Rules shared with the whole repo live in ../.gitignore
+node_modules/
+dist/
+*.tsbuildinfo

@@ -1,0 +1,132 @@
+import type { CSSProperties } from 'react';
+import laptopFrame from '@/assets/images/laptop-frame.webp';
+import { Button } from '@/components/ui/Button';
+import { Section } from '@/components/ui/Section';
+import { TagHand } from '@/components/ui/TagHand';
+import { CONTACT, SECTION_IDS } from '@/config/site';
+import { SHOWCASE } from '@/content';
+import { useHoverIntent } from '@/hooks/useHoverIntent';
+import { useInView } from '@/hooks/useInView';
+import { usePageVisible } from '@/hooks/usePageVisible';
+import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
+import { FOCUS_SLOT, useScreenRotation } from '@/hooks/useScreenRotation';
+
+const SIDE_SLOTS = [
+  { slot: 0, position: 'md:left-0' },
+  { slot: 2, position: 'md:right-0' },
+];
+
+export function ProjectsShowcase() {
+  const rotation = useScreenRotation(SHOWCASE.length);
+  const hover = useHoverIntent();
+  const inView = useInView(rotation.containerRef, 0.3);
+  const pageVisible = usePageVisible();
+  const reducedMotion = usePrefersReducedMotion();
+  const paused = reducedMotion || !inView || !pageVisible || hover.active;
+
+  return (
+    <Section
+      id={SECTION_IDS.projects}
+      tone="navy"
+      padded={false}
+      aria-labelledby="projects-title"
+      className="pb-[72px] pt-[84px] sm:pb-[88px] sm:pt-[100px] md:pb-[120px] md:pt-[140px]"
+    >
+      <div className="wrap flex flex-col items-center text-center">
+        <TagHand tilted className="mb-[18px]">
+          O que eu desenvolvo?
+        </TagHand>
+        <h2 id="projects-title" className="title text-center text-white">
+          Meus projetos em <span className="underline-yellow">ação.</span>
+        </h2>
+        <p className="mb-12 max-w-[760px] text-[0.95rem] text-white sm:text-[1.0625rem] md:mb-[72px]">
+          Uma seleção de sistemas, plataformas e automações desenvolvidos a partir de desafios reais.
+          <br className="hidden sm:inline" /> Em cada projeto, apresento o problema, a solução construída e as
+          tecnologias aplicadas.
+        </p>
+
+        <div
+          ref={rotation.containerRef}
+          {...hover.handlers}
+          className="showcase-glow relative mb-8 grid w-full max-w-[1160px] grid-cols-2 gap-2.5 sm:gap-4 md:mb-11 md:block md:aspect-[727/200] xl:max-w-[1320px] 2xl:max-w-[1560px]"
+          style={{ '--glow': SHOWCASE[rotation.focused].accent } as CSSProperties}
+        >
+          {SIDE_SLOTS.map(({ slot, position }) => (
+            <div
+              key={slot}
+              className={`flex w-full items-center rounded-[14px] bg-navy-3 p-[5px] shadow-[0_24px_60px_rgba(0,0,0,.3)] sm:rounded-[18px] md:absolute md:top-1/2 md:aspect-[207/148] md:w-[28.5%] md:-translate-y-1/2 md:rounded-[22px] md:p-[7px] ${position}`}
+            >
+              <div ref={rotation.slotRef(slot)} className="aspect-video w-full" />
+            </div>
+          ))}
+
+          <div className="relative order-first col-span-2 w-full drop-shadow-[0_30px_40px_rgba(0,0,0,.35)] md:absolute md:left-1/2 md:top-0 md:z-[2] md:-mt-[2%] md:w-[56%] md:-translate-x-1/2">
+            <img src={laptopFrame} alt="" className="w-full" />
+            <div
+              ref={rotation.slotRef(FOCUS_SLOT)}
+              className="absolute left-[16.375%] top-[10%] h-[72.333%] w-[67.375%]"
+            />
+          </div>
+
+          {SHOWCASE.map((project, i) => (
+            <img
+              key={project.name}
+              ref={rotation.screenRef(i)}
+              src={project.image}
+              alt={project.alt}
+              className="screen"
+              onTransitionEnd={(e) => rotation.onScreenTransitionEnd(i, e)}
+            />
+          ))}
+          <div
+            ref={rotation.glareRef}
+            className="glare pointer-events-none absolute z-[4] overflow-hidden rounded-[2px]"
+            aria-hidden="true"
+          />
+        </div>
+
+        <div
+          role="group"
+          aria-label="Escolha o projeto em destaque"
+          {...hover.handlers}
+          onAnimationEnd={(e) => {
+            if (e.animationName === 'progress') rotation.advance();
+          }}
+          className={`mb-11 flex w-full max-w-[360px] flex-col items-stretch gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center ${
+            paused ? 'tabs-paused' : ''
+          }`}
+        >
+          {SHOWCASE.map((project, i) => {
+            const isActive = i === rotation.focused;
+            return (
+              <button
+                key={project.name}
+                type="button"
+                aria-pressed={isActive}
+                onClick={() => rotation.focus(i)}
+                className={`lift-on-hover relative inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-[26px] py-[15px] text-[0.95rem] font-medium leading-none transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lift focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-yellow ${
+                  isActive ? 'tab-active bg-blue text-white' : 'bg-white text-navy'
+                }`}
+              >
+                <span
+                  aria-hidden="true"
+                  className={`h-2 w-2 shrink-0 rounded-full ${isActive ? 'shadow-[0_0_0_3px_rgba(255,255,255,.9)]' : ''}`}
+                  style={{ background: project.accent }}
+                />
+                {project.name}
+                <i
+                  aria-hidden="true"
+                  className={`tab-bar absolute bottom-1.5 left-[22px] right-[22px] h-0.5 overflow-hidden rounded-sm ${isActive ? 'bg-white/25' : ''}`}
+                />
+              </button>
+            );
+          })}
+        </div>
+
+        <Button href={CONTACT.github} external>
+          Ver projetos no GitHub
+        </Button>
+      </div>
+    </Section>
+  );
+}
