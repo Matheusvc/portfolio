@@ -23,6 +23,15 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
+  // --- TOOLS MARQUEE: duplicate the list so the loop is seamless ---
+  var bandTrack = document.getElementById('bandTrack');
+  if (bandTrack) {
+    var bandClone = bandTrack.firstElementChild.cloneNode(true);
+    bandClone.setAttribute('aria-hidden', 'true');
+    bandClone.removeAttribute('aria-label');
+    bandTrack.appendChild(bandClone);
+  }
+
   // --- MOBILE MENU ---
   toggle.addEventListener('click', function () {
     var isOpen = links.classList.toggle('open');
@@ -65,7 +74,6 @@
     next.addEventListener('click', function () { scroller.scrollBy({ left: step(), behavior: 'smooth' }); });
   }
   bindCarousel('svcPrev', 'svcNext', 'svcScroller');
-  bindCarousel('projPrev', 'projNext', 'projScroller');
 
   // --- PROJECT SCREENS CAROUSEL (left -> laptop -> right -> left) ---
   var acao = document.getElementById('acaoCarousel');
