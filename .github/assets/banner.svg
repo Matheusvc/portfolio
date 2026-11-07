@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="Matheus Lira — Analista de Sistemas e Desenvolvedor Full-Stack">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0F0FFF"/>
+      <stop offset="1" stop-color="#5B5BFF"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#fff" stroke-opacity=".09"/>
+    </pattern>
+    <radialGradient id="fade" cx=".35" cy=".4" r=".75">
+      <stop offset=".25" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="m"><rect width="1200" height="360" fill="url(#fade)"/></mask>
+    <style>
+      .t{font-family:'Arial Black','Archivo',Arial,sans-serif;font-weight:900;fill:#fff}
+      .s{font-family:'Segoe UI',Inter,Arial,sans-serif;fill:#fff}
+      .m{font-family:'JetBrains Mono',Consolas,monospace;font-size:17px}
+      .in{opacity:0;animation:in .7s ease forwards}
+      .d1{animation-delay:.1s}.d2{animation-delay:.35s}.d3{animation-delay:.6s}.d4{animation-delay:.9s}
+      .cursor{animation:blink 1s step-end infinite}
+      .float{animation:float 6s ease-in-out infinite}
+      @keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+      @keyframes blink{50%{opacity:0}}
+      @keyframes float{50%{transform:translateY(-8px)}}
+    </style>
+  </defs>
+
+  <rect width="1200" height="360" rx="24" fill="url(#bg)"/>
+  <rect width="1200" height="360" rx="24" fill="url(#grid)" mask="url(#m)"/>
+
+  <g class="in d1">
+    <rect x="64" y="58" width="240" height="34" rx="6" fill="#FFD60A" transform="rotate(-3 184 75)"/>
+    <text x="184" y="81" text-anchor="middle" class="s" font-size="17" font-weight="700" style="fill:#17126A" transform="rotate(-3 184 75)">&lt;/&gt; dev por trás do código</text>
+  </g>
+  <text x="64" y="160" class="t in d2" font-size="62">MATHEUS LIRA</text>
+  <rect x="64" y="174" width="430" height="8" rx="4" fill="#FFD60A" class="in d2"/>
+  <text x="64" y="222" class="s in d3" font-size="22" fill-opacity=".92">Analista de Sistemas &amp; Desenvolvedor Full-Stack · São Luís, MA</text>
+
+  <g class="in d4">
+    <text x="64" y="292" class="m" fill="#C9C8FF">$<tspan fill="#fff"> npm run build</tspan><tspan fill="#C9C8FF">  →  React · TypeScript · Tailwind · Vite </tspan><tspan fill="#FFD60A" class="cursor">▋</tspan></text>
+  </g>
+
+  <g class="float" transform="translate(0 0)">
+    <g transform="translate(860 70)">
+      <rect width="270" height="210" rx="16" fill="#17126A" fill-opacity=".85" stroke="#fff" stroke-opacity=".18"/>
+      <circle cx="22" cy="22" r="6" fill="#FF5F57"/><circle cx="42" cy="22" r="6" fill="#FEBC2E"/><circle cx="62" cy="22" r="6" fill="#28C840"/>
+      <text x="22" y="70" class="m" font-size="15"><tspan fill="#C9C8FF">const</tspan><tspan fill="#fff"> dev = {</tspan></text>
+      <text x="40" y="98" class="m" font-size="15"><tspan fill="#fff">stack: </tspan><tspan fill="#FFD60A">'full'</tspan><tspan fill="#fff">,</tspan></text>
+      <text x="40" y="126" class="m" font-size="15"><tspan fill="#fff">tests: </tspan><tspan fill="#3DBE7B">true</tspan><tspan fill="#fff">,</tspan></text>
+      <text x="40" y="154" class="m" font-size="15"><tspan fill="#fff">ci: </tspan><tspan fill="#3DBE7B">'passing'</tspan><tspan fill="#fff">,</tspan></text>
+      <text x="22" y="182" class="m" font-size="15" fill="#fff">};</text>
+    </g>
+  </g>
+</svg>

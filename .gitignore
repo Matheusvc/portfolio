@@ -1,16 +1,14 @@
-# Claude Code config
+# Claude Code
 .claude/
 
-# OS
+# Dependencies and builds
+node_modules/
+dist/
+
+# OS / editors
 Thumbs.db
 .DS_Store
-
-# Editor
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# Node
-node_modules/
-package-lock.json
