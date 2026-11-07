@@ -33,15 +33,26 @@
   }
 
   // --- MOBILE MENU ---
-  toggle.addEventListener('click', function () {
-    var isOpen = links.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', isOpen);
+  var setMenu = function (open) {
+    links.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  };
+  toggle.addEventListener('click', function (e) {
+    e.stopPropagation();
+    setMenu(!links.classList.contains('open'));
   });
   navLinks.forEach(function (link) {
-    link.addEventListener('click', function () {
-      links.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
+    link.addEventListener('click', function () { setMenu(false); });
+  });
+  document.addEventListener('click', function (e) {
+    if (links.classList.contains('open') && !links.contains(e.target)) setMenu(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && links.classList.contains('open')) { setMenu(false); toggle.focus(); }
+  });
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 1100 && links.classList.contains('open')) setMenu(false);
   });
 
   // --- FAQ ACCORDION ---
@@ -197,9 +208,10 @@
     }, { threshold: 0.3 }).observe(acao);
     document.addEventListener('visibilitychange', updatePause);
     [acao, acaoTabs].forEach(function (el) {
-      el.addEventListener('mouseenter', function () { hovering = true; updatePause(); });
-      el.addEventListener('mouseleave', function () { hovering = false; updatePause(); });
-      el.addEventListener('focusin', function () { hovering = true; updatePause(); });
+      // only a real mouse or keyboard focus pauses; a tap on touch screens must not freeze the carousel
+      el.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { hovering = true; updatePause(); } });
+      el.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') { hovering = false; updatePause(); } });
+      el.addEventListener('focusin', function (e) { if (e.target.matches(':focus-visible')) { hovering = true; updatePause(); } });
       el.addEventListener('focusout', function () { hovering = false; updatePause(); });
     });
     updatePause();
@@ -211,7 +223,7 @@
   var pile = document.getElementById('precisaPile');
   if (pile) {
     var section = pile.parentElement;
-    var pills = Array.prototype.slice.call(pile.querySelectorAll('.precisa__pill'));
+    var allPills = Array.prototype.slice.call(pile.querySelectorAll('.precisa__pill'));
     var M = window.Matter;
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -261,6 +273,8 @@
         started = true;
         buildWalls();
         var w = pile.clientWidth;
+        // pills hidden by CSS on very small screens get no physics body
+        var pills = allPills.filter(function (el) { return el.offsetWidth > 0; });
         pills.forEach(function (el, i) {
           var pw = el.offsetWidth, ph = el.offsetHeight;
           var x = pw / 2 + Math.random() * Math.max(1, w - pw);
