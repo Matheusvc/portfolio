@@ -26,3 +26,6 @@ window.matchMedia ??= (query: string) =>
     removeListener() {},
     dispatchEvent: () => false,
   }) as MediaQueryList;
+
+Object.defineProperty(HTMLMediaElement.prototype, 'play', { configurable: true, value: () => Promise.resolve() });
+Object.defineProperty(HTMLMediaElement.prototype, 'pause', { configurable: true, value: () => undefined });

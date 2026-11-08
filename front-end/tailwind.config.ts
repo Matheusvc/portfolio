@@ -49,7 +49,7 @@ export default {
       },
       animation: {
         marquee: 'marquee 40s linear infinite',
-        progress: 'progress 3.5s linear forwards',
+        progress: 'progress 7s linear forwards',
       },
     },
   },

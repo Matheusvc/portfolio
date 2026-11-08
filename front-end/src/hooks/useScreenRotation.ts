@@ -9,7 +9,7 @@ export function useScreenRotation(count: number) {
   const containerRef = useRef<HTMLDivElement>(null);
   const glareRef = useRef<HTMLDivElement>(null);
   const slots = useRef<(HTMLElement | null)[]>([]);
-  const screens = useRef<(HTMLImageElement | null)[]>([]);
+  const screens = useRef<(HTMLVideoElement | null)[]>([]);
   const positions = useRef<number[]>(Array.from({ length: count }, (_, i) => i % SLOT_COUNT));
   const timers = useRef<number[]>([]);
   const busy = useRef(false);
@@ -83,7 +83,7 @@ export function useScreenRotation(count: number) {
     [rotate],
   );
 
-  const onScreenTransitionEnd = useCallback((index: number, e: TransitionEvent<HTMLImageElement>) => {
+  const onScreenTransitionEnd = useCallback((index: number, e: TransitionEvent<HTMLVideoElement>) => {
     if (e.propertyName === 'left') e.currentTarget.style.zIndex = depthFor(positions.current[index]);
   }, []);
 
@@ -109,7 +109,7 @@ export function useScreenRotation(count: number) {
     slotRef: (slot: number) => (el: HTMLElement | null) => {
       slots.current[slot] = el;
     },
-    screenRef: (index: number) => (el: HTMLImageElement | null) => {
+    screenRef: (index: number) => (el: HTMLVideoElement | null) => {
       screens.current[index] = el;
     },
     focused,

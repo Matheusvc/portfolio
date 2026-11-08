@@ -18,3 +18,17 @@ describe('ProjectsShowcase', () => {
     expect(pressed()).toEqual([target]);
   });
 });
+
+describe('ProjectsShowcase videos', () => {
+  it('renders one muted, looping video with a poster per project', () => {
+    const { container } = render(<ProjectsShowcase />);
+    const videos = Array.from(container.querySelectorAll('video'));
+    expect(videos).toHaveLength(SHOWCASE.length);
+    for (const video of videos) {
+      expect(video.muted).toBe(true);
+      expect(video.loop).toBe(true);
+      expect(video).toHaveAttribute('poster');
+      expect(video).toHaveAttribute('aria-label');
+    }
+  });
+});

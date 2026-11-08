@@ -1,13 +1,16 @@
-import dashboard from '@/assets/images/acao-dashboard.webp';
-import brunaMakes from '@/assets/images/bruna-makes.webp';
+import castroPoster from '@/assets/images/castro-advocacia-poster.webp';
 import eventoHackathon from '@/assets/images/evento-hackathon.webp';
 import eventoPhpeste from '@/assets/images/evento-phpeste.webp';
 import eventoSebrae from '@/assets/images/evento-sebrae.webp';
-import portal from '@/assets/images/portal-transparencia.webp';
 import svcApis from '@/assets/images/svc-apis.webp';
 import svcAutomacao from '@/assets/images/svc-automacao.webp';
 import svcDashboards from '@/assets/images/svc-dashboards.webp';
 import svcFullstack from '@/assets/images/svc-fullstack.webp';
+import vagaCertaClientePoster from '@/assets/images/vaga-certa-cliente-poster.webp';
+import vagaCertaGestorPoster from '@/assets/images/vaga-certa-gestor-poster.webp';
+import castroVideo from '@/assets/videos/castro-advocacia.mp4';
+import vagaCertaClienteVideo from '@/assets/videos/vaga-certa-cliente.mp4';
+import vagaCertaGestorVideo from '@/assets/videos/vaga-certa-gestor.mp4';
 import { CONTACT, NAV_LINKS, SECTION_IDS } from '@/config/site';
 import type {
   EventItem,
@@ -48,9 +51,27 @@ export const CHALLENGES: string[] = [
 ];
 
 export const SHOWCASE: ShowcaseProject[] = [
-  { name: 'Gestão de Barbearia', image: dashboard, alt: 'Dashboard de gestão de barbearia', accent: '#E3A51C' },
-  { name: 'Bruna Makes', image: brunaMakes, alt: 'Loja virtual Bruna Makes', accent: '#C2405E' },
-  { name: 'Portal da Transparência', image: portal, alt: 'Portal da Transparência', accent: '#3B82FF' },
+  {
+    name: 'Castro Advocacia',
+    video: castroVideo,
+    poster: castroPoster,
+    label: 'Painel da Castro Advocacia com dashboard e relatórios',
+    accent: '#7C6CF2',
+  },
+  {
+    name: 'Vaga Certa · Gestor',
+    video: vagaCertaGestorVideo,
+    poster: vagaCertaGestorPoster,
+    label: 'Painel do gestor do Vaga Certa com mapa de vagas em tempo real',
+    accent: '#14B8A6',
+  },
+  {
+    name: 'Vaga Certa · Cliente',
+    video: vagaCertaClienteVideo,
+    poster: vagaCertaClientePoster,
+    label: 'Área do cliente do Vaga Certa para reservar vagas',
+    accent: '#22C55E',
+  },
 ];
 
 export const SERVICES: Service[] = [

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import type { CSSProperties } from 'react';
 import laptopFrame from '@/assets/images/laptop-frame.webp';
 import { Button } from '@/components/ui/Button';
@@ -23,6 +24,16 @@ export function ProjectsShowcase() {
   const pageVisible = usePageVisible();
   const reducedMotion = usePrefersReducedMotion();
   const paused = reducedMotion || !inView || !pageVisible || hover.active;
+  const videos = useRef<(HTMLVideoElement | null)[]>([]);
+  const playing = inView && pageVisible && !reducedMotion;
+
+  useEffect(() => {
+    videos.current.forEach((video, i) => {
+      if (!video) return;
+      if (playing && i === rotation.focused) video.play().catch(() => undefined);
+      else video.pause();
+    });
+  }, [playing, rotation.focused]);
 
   return (
     <Section
@@ -69,11 +80,19 @@ export function ProjectsShowcase() {
           </div>
 
           {SHOWCASE.map((project, i) => (
-            <img
+            <video
               key={project.name}
-              ref={rotation.screenRef(i)}
-              src={project.image}
-              alt={project.alt}
+              ref={(el) => {
+                rotation.screenRef(i)(el);
+                videos.current[i] = el;
+              }}
+              src={project.video}
+              poster={project.poster}
+              aria-label={project.label}
+              muted
+              loop
+              playsInline
+              preload="none"
               className="screen"
               onTransitionEnd={(e) => rotation.onScreenTransitionEnd(i, e)}
             />
