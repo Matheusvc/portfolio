@@ -5,7 +5,7 @@ import { SHOWCASE } from '@/content';
 import { ProjectsShowcase } from './ProjectsShowcase';
 
 const button = (name: string) => screen.getByRole('button', { name: new RegExp(name) });
-const videos = (container: HTMLElement) => Array.from(container.querySelectorAll('video'));
+const screens = (container: HTMLElement) => Array.from(container.querySelectorAll<HTMLImageElement>('img.screen'));
 
 describe('ProjectsShowcase', () => {
   it('shows one button per project and highlights the first', () => {
@@ -15,25 +15,16 @@ describe('ProjectsShowcase', () => {
     for (const b of rest) expect(b).toHaveAttribute('aria-pressed', 'false');
   });
 
-  it('renders every video of the selected project and swaps them on click', async () => {
+  it('renders every screen of the selected project and swaps them on click', async () => {
     const user = userEvent.setup();
     const { container } = render(<ProjectsShowcase />);
 
     for (const project of SHOWCASE) {
       await user.click(button(project.name));
       expect(button(project.name)).toHaveAttribute('aria-pressed', 'true');
-      const shown = videos(container);
-      expect(shown).toHaveLength(Math.min(project.videos.length, 3));
-      expect(shown.map((v) => v.getAttribute('aria-label'))).toEqual(project.videos.slice(0, 3).map((v) => v.label));
-    }
-  });
-
-  it('plays videos muted, looping and with a poster', () => {
-    const { container } = render(<ProjectsShowcase />);
-    for (const video of videos(container)) {
-      expect(video.muted).toBe(true);
-      expect(video.loop).toBe(true);
-      expect(video).toHaveAttribute('poster');
+      const shown = screens(container);
+      expect(shown).toHaveLength(Math.min(project.screens.length, 3));
+      expect(shown.map((img) => img.alt)).toEqual(project.screens.slice(0, 3).map((s) => s.alt));
     }
   });
 });

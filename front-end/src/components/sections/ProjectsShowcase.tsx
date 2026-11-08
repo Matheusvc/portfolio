@@ -18,26 +18,17 @@ const SIDE_SLOTS = [
   { slot: 2, position: 'md:right-0' },
 ];
 
-const stepSeconds = (project: ShowcaseProject) => (project.videos.length > 1 ? 7 : 12);
+const stepSeconds = (project: ShowcaseProject) => (project.screens.length > 1 ? 6 : 8);
 
-function ProjectStage({ project, step, playing }: { project: ShowcaseProject; step: number; playing: boolean }) {
-  const { containerRef, glareRef, slotRef, screenRef, focused, advance, onScreenTransitionEnd } = useScreenRotation(
-    project.videos.length,
+function ProjectStage({ project, step, animateIn }: { project: ShowcaseProject; step: number; animateIn: boolean }) {
+  const { containerRef, glareRef, slotRef, screenRef, advance, onScreenTransitionEnd } = useScreenRotation(
+    project.screens.length,
   );
-  const videos = useRef<(HTMLVideoElement | null)[]>([]);
-  const usedSlots = slotsInUse(project.videos.length);
+  const usedSlots = slotsInUse(project.screens.length);
 
   useEffect(() => {
     if (step > 0) advance();
   }, [step, advance]);
-
-  useEffect(() => {
-    videos.current.forEach((video, i) => {
-      if (!video) return;
-      if (playing && i === focused) video.play().catch(() => undefined);
-      else video.pause();
-    });
-  }, [playing, focused]);
 
   return (
     <div ref={containerRef} className="relative grid w-full grid-cols-2 gap-2.5 sm:gap-4 md:block md:aspect-[727/200]">
@@ -46,7 +37,7 @@ function ProjectStage({ project, step, playing }: { project: ShowcaseProject; st
           key={slot}
           className={`items-center rounded-[14px] bg-navy-3 p-[5px] shadow-[0_24px_60px_rgba(0,0,0,.3)] sm:rounded-[18px] md:absolute md:top-1/2 md:aspect-[207/148] md:w-[28.5%] md:-translate-y-1/2 md:rounded-[22px] md:p-[7px] ${position} ${
             usedSlots.includes(slot) ? 'flex w-full' : 'hidden'
-          }`}
+          } ${animateIn ? 'card-in' : ''}`}
         >
           <div ref={slotRef(slot)} className="aspect-[21/10] w-full" />
         </div>
@@ -57,27 +48,21 @@ function ProjectStage({ project, step, playing }: { project: ShowcaseProject; st
         <div ref={slotRef(FOCUS_SLOT)} className="absolute left-[16.375%] top-[10%] h-[72.333%] w-[67.375%]" />
       </div>
 
-      {project.videos.slice(0, 3).map((video, i) => (
-        <video
-          key={video.src}
-          ref={(el) => {
-            screenRef(i)(el);
-            videos.current[i] = el;
-          }}
-          src={video.src}
-          poster={video.poster}
-          aria-label={video.label}
-          muted
-          loop
-          playsInline
-          preload="none"
-          className="screen"
+      {project.screens.slice(0, 3).map((screen, i) => (
+        <img
+          key={screen.image}
+          ref={screenRef(i)}
+          src={screen.image}
+          alt={screen.alt}
+          className={`screen ${animateIn ? (i === 0 ? 'screen-power-on' : 'screen-in') : ''}`}
+          style={animateIn ? { animationDelay: `${i * 110}ms` } : undefined}
+          onAnimationEnd={(e) => e.currentTarget.classList.remove('screen-power-on', 'screen-in')}
           onTransitionEnd={(e) => onScreenTransitionEnd(i, e)}
         />
       ))}
       <div
         ref={glareRef}
-        className="glare pointer-events-none absolute z-[4] overflow-hidden rounded-[2px]"
+        className={`glare pointer-events-none absolute z-[4] overflow-hidden rounded-[2px] ${animateIn ? 'is-on' : ''}`}
         aria-hidden="true"
       />
     </div>
@@ -93,16 +78,18 @@ export function ProjectsShowcase() {
   const paused = reducedMotion || !inView || !pageVisible || hover.active;
   const [active, setActive] = useState(0);
   const [step, setStep] = useState(0);
+  const [switched, setSwitched] = useState(false);
   const project = SHOWCASE[active];
 
   const select = (index: number) => {
     if (index === active) return;
     setActive(index);
     setStep(0);
+    setSwitched(true);
   };
 
   const next = () => {
-    if (step + 1 < project.videos.length) setStep(step + 1);
+    if (step + 1 < project.screens.length) setStep(step + 1);
     else select((active + 1) % SHOWCASE.length);
   };
 
@@ -133,12 +120,7 @@ export function ProjectsShowcase() {
           className="showcase-glow relative mb-8 w-full max-w-[1160px] md:mb-11 xl:max-w-[1320px] 2xl:max-w-[1560px]"
           style={{ '--glow': project.accent } as CSSProperties}
         >
-          <ProjectStage
-            key={project.name}
-            project={project}
-            step={step}
-            playing={inView && pageVisible && !reducedMotion}
-          />
+          <ProjectStage key={project.name} project={project} step={step} animateIn={switched} />
         </div>
 
         <div
@@ -161,7 +143,7 @@ export function ProjectsShowcase() {
                 aria-pressed={isActive}
                 onClick={() => select(i)}
                 style={{ '--step': `${stepSeconds(item)}s` } as CSSProperties}
-                className={`lift-on-hover relative inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-[26px] py-[15px] text-[0.95rem] font-medium leading-none transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lift focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-yellow ${
+                className={`lift-on-hover relative inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-[26px] py-[15px] text-[0.95rem] font-medium leading-none transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lift focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-yellow active:scale-95 active:duration-100 ${
                   isActive ? 'tab-active bg-blue text-white' : 'bg-white text-navy'
                 }`}
               >

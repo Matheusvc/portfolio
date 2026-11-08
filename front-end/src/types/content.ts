@@ -2,8 +2,8 @@ export type Link = { label: string; href: string; external?: boolean };
 
 export type Tool = { name: string; icon: string };
 
-export type ShowcaseVideo = { src: string; poster: string; label: string };
-export type ShowcaseProject = { name: string; accent: string; videos: ShowcaseVideo[] };
+export type ShowcaseScreen = { image: string; alt: string };
+export type ShowcaseProject = { name: string; accent: string; screens: ShowcaseScreen[] };
 
 export type Service = { title: string; description: string; image: string };
 

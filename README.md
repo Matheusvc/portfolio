@@ -21,14 +21,14 @@ Site estático: não tem back-end nem banco de dados, e o contato vai direto par
 
 ## ✨ Destaques
 
-|     |                                    |                                                                                                                              |
-| :-: | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| 🧲  | **Física em tempo real**           | As etiquetas da seção “Tudo que seu projeto precisa” caem e se empilham com Matter.js; dá para arrastá-las com o mouse       |
-| 💻  | **Carrossel de projetos em vídeo** | Gravações reais agrupadas por projeto: o notebook mostra a tela principal e os cards, as demais; só o vídeo em destaque toca |
-| ⚡  | **Carregamento sob demanda**       | O motor de física só é baixado quando o visitante chega perto da seção que o usa                                             |
-| 🖼️  | **Imagens leves**                  | WebP no dobro do tamanho em que aparecem: de 3,8 MB para 600 KB                                                              |
-| ♿  | **Acessível**                      | Navegação por teclado, leitores de tela e respeito a quem prefere menos movimento                                            |
-| 🧪  | **Testado a cada push**            | 14 testes automáticos e verificação completa no GitHub Actions                                                               |
+|     |                              |                                                                                                                             |
+| :-: | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| 🧲  | **Física em tempo real**     | As etiquetas da seção “Tudo que seu projeto precisa” caem e se empilham com Matter.js; dá para arrastá-las com o mouse      |
+| 💻  | **Carrossel por projeto**    | Telas reais agrupadas por projeto: o notebook mostra a principal e os cards, as demais; ao trocar, a tela “liga” com efeito |
+| ⚡  | **Carregamento sob demanda** | O motor de física só é baixado quando o visitante chega perto da seção que o usa                                            |
+| 🖼️  | **Imagens leves**            | WebP no dobro do tamanho em que aparecem: de 3,8 MB para 630 KB                                                             |
+| ♿  | **Acessível**                | Navegação por teclado, leitores de tela e respeito a quem prefere menos movimento                                           |
+| 🧪  | **Testado a cada push**      | 13 testes automáticos e verificação completa no GitHub Actions                                                              |
 
 ## 🧰 Stack
 
@@ -93,15 +93,14 @@ front-end/src/
 
 ## ⚡ Performance
 
-| O que              | Resultado                                                                                |
-| ------------------ | ---------------------------------------------------------------------------------------- |
-| JavaScript inicial | **59 KB** comprimido (gzip)                                                              |
-| CSS                | **9 KB** comprimido                                                                      |
-| Motor de física    | **27 KB** à parte, baixado quando a seção está a ~800 px de aparecer                     |
-| Imagens            | **600 KB** em WebP (antes: 3,8 MB em PNG e JPG)                                          |
-| Vídeos             | **4,4 MB** em MP4 H.264 sem áudio (antes: 123 MB); baixados só quando entram em destaque |
-| Carrossel          | pausa fora da tela, com a aba em segundo plano e com o mouse em cima                     |
-| Física             | para de calcular quando a seção sai da tela                                              |
+| O que              | Resultado                                                            |
+| ------------------ | -------------------------------------------------------------------- |
+| JavaScript inicial | **59 KB** comprimido (gzip)                                          |
+| CSS                | **9 KB** comprimido                                                  |
+| Motor de física    | **27 KB** à parte, baixado quando a seção está a ~800 px de aparecer |
+| Imagens            | **630 KB** em WebP (antes: 3,8 MB em PNG e JPG)                      |
+| Carrossel          | pausa fora da tela, com a aba em segundo plano e com o mouse em cima |
+| Física             | para de calcular quando a seção sai da tela                          |
 
 ## 🧪 Qualidade
 
@@ -114,11 +113,11 @@ flowchart LR
 
 Se qualquer etapa falhar, o selo **CI** no topo fica vermelho.
 
-Os 14 testes, em 5 arquivos ao lado do código (`*.test.tsx`), verificam:
+Os 13 testes, em 5 arquivos ao lado do código (`*.test.tsx`), verificam:
 
 - o menu abre, fecha com `Esc`, fecha ao clicar fora e devolve o foco ao botão;
 - o FAQ mantém só uma resposta aberta por vez;
-- cada projeto mostra todos os seus vídeos (mudos, em loop, com capa e descrição para leitores de tela) e troca ao clicar no botão;
+- cada projeto mostra todas as suas telas, com texto alternativo, e troca ao clicar no botão;
 - nenhum link interno aponta para uma seção que não existe;
 - links externos abrem em nova aba com `rel="noopener"`;
 - toda imagem tem texto alternativo (`alt`);
