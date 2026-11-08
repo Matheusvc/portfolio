@@ -20,10 +20,19 @@ const SIDE_SLOTS = [
 
 const stepSeconds = (project: ShowcaseProject) => (project.screens.length > 1 ? 6 : 8);
 
-function ProjectStage({ project, step, animateIn }: { project: ShowcaseProject; step: number; animateIn: boolean }) {
-  const { containerRef, glareRef, slotRef, screenRef, advance, onScreenTransitionEnd } = useScreenRotation(
-    project.screens.length,
-  );
+function ProjectStage({
+  project,
+  step,
+  animateIn,
+  onPick,
+}: {
+  project: ShowcaseProject;
+  step: number;
+  animateIn: boolean;
+  onPick: () => void;
+}) {
+  const { containerRef, glareRef, slotRef, screenRef, advance, focusSlot, screenInSlot, onScreenTransitionEnd } =
+    useScreenRotation(project.screens.length);
   const usedSlots = slotsInUse(project.screens.length);
 
   useEffect(() => {
@@ -33,14 +42,20 @@ function ProjectStage({ project, step, animateIn }: { project: ShowcaseProject; 
   return (
     <div ref={containerRef} className="relative grid w-full grid-cols-2 gap-2.5 sm:gap-4 md:block md:aspect-[727/200]">
       {SIDE_SLOTS.map(({ slot, position }) => (
-        <div
+        <button
           key={slot}
-          className={`items-center rounded-[14px] bg-navy-3 p-[5px] shadow-[0_24px_60px_rgba(0,0,0,.3)] sm:rounded-[18px] md:absolute md:top-1/2 md:aspect-[207/148] md:w-[28.5%] md:-translate-y-1/2 md:rounded-[22px] md:p-[7px] ${position} ${
+          type="button"
+          aria-label={`Mostrar no computador: ${project.screens[screenInSlot(slot)]?.alt ?? ''}`}
+          onClick={() => {
+            focusSlot(slot);
+            onPick();
+          }}
+          className={`cursor-pointer items-center rounded-[14px] bg-navy-3 p-[5px] shadow-[0_24px_60px_rgba(0,0,0,.3)] ring-yellow transition-shadow duration-300 hover:ring-2 focus-visible:outline-none focus-visible:ring-2 sm:rounded-[18px] md:absolute md:top-1/2 md:aspect-[207/148] md:w-[28.5%] md:-translate-y-1/2 md:rounded-[22px] md:p-[7px] ${position} ${
             usedSlots.includes(slot) ? 'flex w-full' : 'hidden'
           } ${animateIn ? 'card-in' : ''}`}
         >
           <div ref={slotRef(slot)} className="aspect-[21/10] w-full" />
-        </div>
+        </button>
       ))}
 
       <div className="relative order-first col-span-2 w-full drop-shadow-[0_30px_40px_rgba(0,0,0,.35)] md:absolute md:left-1/2 md:top-0 md:z-[2] md:-mt-[2%] md:w-[56%] md:-translate-x-1/2">
@@ -79,6 +94,7 @@ export function ProjectsShowcase() {
   const [active, setActive] = useState(0);
   const [step, setStep] = useState(0);
   const [switched, setSwitched] = useState(false);
+  const [picks, setPicks] = useState(0);
   const project = SHOWCASE[active];
 
   const select = (index: number) => {
@@ -120,7 +136,13 @@ export function ProjectsShowcase() {
           className="showcase-glow relative mb-8 w-full max-w-[1160px] md:mb-11 xl:max-w-[1320px] 2xl:max-w-[1560px]"
           style={{ '--glow': project.accent } as CSSProperties}
         >
-          <ProjectStage key={project.name} project={project} step={step} animateIn={switched} />
+          <ProjectStage
+            key={project.name}
+            project={project}
+            step={step}
+            animateIn={switched}
+            onPick={() => setPicks((n) => n + 1)}
+          />
         </div>
 
         <div
@@ -154,7 +176,7 @@ export function ProjectsShowcase() {
                 />
                 {item.name}
                 <i
-                  key={isActive ? `${active}-${step}` : 'idle'}
+                  key={isActive ? `${active}-${step}-${picks}` : 'idle'}
                   aria-hidden="true"
                   className={`tab-bar absolute bottom-1.5 left-[22px] right-[22px] h-0.5 overflow-hidden rounded-sm ${isActive ? 'bg-white/25' : ''}`}
                 />

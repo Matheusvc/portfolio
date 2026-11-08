@@ -1,10 +1,10 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { describe, expect, it } from 'vitest';
 import { SHOWCASE } from '@/content';
 import { ProjectsShowcase } from './ProjectsShowcase';
 
-const button = (name: string) => screen.getByRole('button', { name: new RegExp(name) });
+const button = (name: string) => screen.getByRole('button', { name });
 const screens = (container: HTMLElement) => Array.from(container.querySelectorAll<HTMLImageElement>('img.screen'));
 
 describe('ProjectsShowcase', () => {
@@ -25,6 +25,20 @@ describe('ProjectsShowcase', () => {
       const shown = screens(container);
       expect(shown).toHaveLength(Math.min(project.screens.length, 3));
       expect(shown.map((img) => img.alt)).toEqual(project.screens.slice(0, 3).map((s) => s.alt));
+    }
+  });
+
+  it('moves a side screen into the laptop when its card is clicked', async () => {
+    for (const index of [0, 1]) {
+      const user = userEvent.setup();
+      const { container, unmount } = render(<ProjectsShowcase />);
+      const inLaptop = () => container.querySelector<HTMLImageElement>('img.screen[data-pos="1"]')?.alt;
+      const card = screen.getAllByRole('button', { name: /^Mostrar no computador/ })[index];
+      const target = card.getAttribute('aria-label')?.replace('Mostrar no computador: ', '');
+
+      await user.click(card);
+      await waitFor(() => expect(inLaptop()).toBe(target), { timeout: 3000 });
+      unmount();
     }
   });
 });

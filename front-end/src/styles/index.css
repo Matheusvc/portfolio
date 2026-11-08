@@ -198,7 +198,7 @@
     transition: background-color 1.2s ease;
   }
   .screen {
-    @apply absolute left-0 top-0 h-0 w-0 rounded bg-black object-contain;
+    @apply pointer-events-none absolute left-0 top-0 h-0 w-0 rounded bg-black object-contain;
     z-index: 1;
     transition:
       left 0.9s cubic-bezier(0.65, 0, 0.35, 1),
@@ -210,6 +210,7 @@
   }
   .screen[data-pos='1'] {
     border-radius: 2px;
+    object-fit: cover;
   }
   .is-static .screen {
     transition: none;

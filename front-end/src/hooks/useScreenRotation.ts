@@ -117,6 +117,16 @@ export function useScreenRotation(count: number) {
     };
   }, [placeWithoutAnimation]);
 
+  const focusSlot = useCallback(
+    (slot: number) => {
+      const index = positions.current.indexOf(slot);
+      if (index >= 0) focus(index);
+    },
+    [focus],
+  );
+
+  const screenInSlot = (slot: number) => positions.current.indexOf(slot);
+
   return {
     containerRef,
     glareRef,
@@ -129,6 +139,8 @@ export function useScreenRotation(count: number) {
     focused,
     focus,
     advance,
+    focusSlot,
+    screenInSlot,
     onScreenTransitionEnd,
   };
 }
