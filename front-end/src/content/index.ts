@@ -8,9 +8,11 @@ import svcDashboards from '@/assets/images/svc-dashboards.webp';
 import svcFullstack from '@/assets/images/svc-fullstack.webp';
 import vagaCertaClientePoster from '@/assets/images/vaga-certa-cliente-poster.webp';
 import vagaCertaGestorPoster from '@/assets/images/vaga-certa-gestor-poster.webp';
+import vagaCertaGuaritaPoster from '@/assets/images/vaga-certa-guarita-poster.webp';
 import castroVideo from '@/assets/videos/castro-advocacia.mp4';
 import vagaCertaClienteVideo from '@/assets/videos/vaga-certa-cliente.mp4';
 import vagaCertaGestorVideo from '@/assets/videos/vaga-certa-gestor.mp4';
+import vagaCertaGuaritaVideo from '@/assets/videos/vaga-certa-guarita.mp4';
 import { CONTACT, NAV_LINKS, SECTION_IDS } from '@/config/site';
 import type {
   EventItem,
@@ -52,25 +54,36 @@ export const CHALLENGES: string[] = [
 
 export const SHOWCASE: ShowcaseProject[] = [
   {
-    name: 'Castro Advocacia',
-    video: castroVideo,
-    poster: castroPoster,
-    label: 'Painel da Castro Advocacia com dashboard e relatórios',
-    accent: '#7C6CF2',
-  },
-  {
-    name: 'Vaga Certa · Gestor',
-    video: vagaCertaGestorVideo,
-    poster: vagaCertaGestorPoster,
-    label: 'Painel do gestor do Vaga Certa com mapa de vagas em tempo real',
+    name: 'Vaga Certa',
     accent: '#14B8A6',
+    videos: [
+      {
+        src: vagaCertaGestorVideo,
+        poster: vagaCertaGestorPoster,
+        label: 'Vaga Certa: painel do gestor com mapa de vagas em tempo real',
+      },
+      {
+        src: vagaCertaClienteVideo,
+        poster: vagaCertaClientePoster,
+        label: 'Vaga Certa: área do cliente para reservar vagas',
+      },
+      {
+        src: vagaCertaGuaritaVideo,
+        poster: vagaCertaGuaritaPoster,
+        label: 'Vaga Certa: controle de acesso da guarita com leitura de QR code',
+      },
+    ],
   },
   {
-    name: 'Vaga Certa · Cliente',
-    video: vagaCertaClienteVideo,
-    poster: vagaCertaClientePoster,
-    label: 'Área do cliente do Vaga Certa para reservar vagas',
-    accent: '#22C55E',
+    name: 'Castro Advocacia',
+    accent: '#7C6CF2',
+    videos: [
+      {
+        src: castroVideo,
+        poster: castroPoster,
+        label: 'Castro Advocacia: painel com dashboard e relatórios',
+      },
+    ],
   },
 ];
 

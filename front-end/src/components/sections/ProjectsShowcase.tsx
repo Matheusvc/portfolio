@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import laptopFrame from '@/assets/images/laptop-frame.webp';
 import { Button } from '@/components/ui/Button';
@@ -10,30 +10,101 @@ import { useHoverIntent } from '@/hooks/useHoverIntent';
 import { useInView } from '@/hooks/useInView';
 import { usePageVisible } from '@/hooks/usePageVisible';
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion';
-import { FOCUS_SLOT, useScreenRotation } from '@/hooks/useScreenRotation';
+import { FOCUS_SLOT, slotsInUse, useScreenRotation } from '@/hooks/useScreenRotation';
+import type { ShowcaseProject } from '@/types/content';
 
 const SIDE_SLOTS = [
   { slot: 0, position: 'md:left-0' },
   { slot: 2, position: 'md:right-0' },
 ];
 
-export function ProjectsShowcase() {
-  const rotation = useScreenRotation(SHOWCASE.length);
-  const hover = useHoverIntent();
-  const inView = useInView(rotation.containerRef, 0.3);
-  const pageVisible = usePageVisible();
-  const reducedMotion = usePrefersReducedMotion();
-  const paused = reducedMotion || !inView || !pageVisible || hover.active;
+const stepSeconds = (project: ShowcaseProject) => (project.videos.length > 1 ? 7 : 12);
+
+function ProjectStage({ project, step, playing }: { project: ShowcaseProject; step: number; playing: boolean }) {
+  const { containerRef, glareRef, slotRef, screenRef, focused, advance, onScreenTransitionEnd } = useScreenRotation(
+    project.videos.length,
+  );
   const videos = useRef<(HTMLVideoElement | null)[]>([]);
-  const playing = inView && pageVisible && !reducedMotion;
+  const usedSlots = slotsInUse(project.videos.length);
+
+  useEffect(() => {
+    if (step > 0) advance();
+  }, [step, advance]);
 
   useEffect(() => {
     videos.current.forEach((video, i) => {
       if (!video) return;
-      if (playing && i === rotation.focused) video.play().catch(() => undefined);
+      if (playing && i === focused) video.play().catch(() => undefined);
       else video.pause();
     });
-  }, [playing, rotation.focused]);
+  }, [playing, focused]);
+
+  return (
+    <div ref={containerRef} className="relative grid w-full grid-cols-2 gap-2.5 sm:gap-4 md:block md:aspect-[727/200]">
+      {SIDE_SLOTS.map(({ slot, position }) => (
+        <div
+          key={slot}
+          className={`items-center rounded-[14px] bg-navy-3 p-[5px] shadow-[0_24px_60px_rgba(0,0,0,.3)] sm:rounded-[18px] md:absolute md:top-1/2 md:aspect-[207/148] md:w-[28.5%] md:-translate-y-1/2 md:rounded-[22px] md:p-[7px] ${position} ${
+            usedSlots.includes(slot) ? 'flex w-full' : 'hidden'
+          }`}
+        >
+          <div ref={slotRef(slot)} className="aspect-[21/10] w-full" />
+        </div>
+      ))}
+
+      <div className="relative order-first col-span-2 w-full drop-shadow-[0_30px_40px_rgba(0,0,0,.35)] md:absolute md:left-1/2 md:top-0 md:z-[2] md:-mt-[2%] md:w-[56%] md:-translate-x-1/2">
+        <img src={laptopFrame} alt="" className="w-full" />
+        <div ref={slotRef(FOCUS_SLOT)} className="absolute left-[16.375%] top-[10%] h-[72.333%] w-[67.375%]" />
+      </div>
+
+      {project.videos.slice(0, 3).map((video, i) => (
+        <video
+          key={video.src}
+          ref={(el) => {
+            screenRef(i)(el);
+            videos.current[i] = el;
+          }}
+          src={video.src}
+          poster={video.poster}
+          aria-label={video.label}
+          muted
+          loop
+          playsInline
+          preload="none"
+          className="screen"
+          onTransitionEnd={(e) => onScreenTransitionEnd(i, e)}
+        />
+      ))}
+      <div
+        ref={glareRef}
+        className="glare pointer-events-none absolute z-[4] overflow-hidden rounded-[2px]"
+        aria-hidden="true"
+      />
+    </div>
+  );
+}
+
+export function ProjectsShowcase() {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const hover = useHoverIntent();
+  const inView = useInView(stageRef, 0.3);
+  const pageVisible = usePageVisible();
+  const reducedMotion = usePrefersReducedMotion();
+  const paused = reducedMotion || !inView || !pageVisible || hover.active;
+  const [active, setActive] = useState(0);
+  const [step, setStep] = useState(0);
+  const project = SHOWCASE[active];
+
+  const select = (index: number) => {
+    if (index === active) return;
+    setActive(index);
+    setStep(0);
+  };
+
+  const next = () => {
+    if (step + 1 < project.videos.length) setStep(step + 1);
+    else select((active + 1) % SHOWCASE.length);
+  };
 
   return (
     <Section
@@ -57,50 +128,16 @@ export function ProjectsShowcase() {
         </p>
 
         <div
-          ref={rotation.containerRef}
+          ref={stageRef}
           {...hover.handlers}
-          className="showcase-glow relative mb-8 grid w-full max-w-[1160px] grid-cols-2 gap-2.5 sm:gap-4 md:mb-11 md:block md:aspect-[727/200] xl:max-w-[1320px] 2xl:max-w-[1560px]"
-          style={{ '--glow': SHOWCASE[rotation.focused].accent } as CSSProperties}
+          className="showcase-glow relative mb-8 w-full max-w-[1160px] md:mb-11 xl:max-w-[1320px] 2xl:max-w-[1560px]"
+          style={{ '--glow': project.accent } as CSSProperties}
         >
-          {SIDE_SLOTS.map(({ slot, position }) => (
-            <div
-              key={slot}
-              className={`flex w-full items-center rounded-[14px] bg-navy-3 p-[5px] shadow-[0_24px_60px_rgba(0,0,0,.3)] sm:rounded-[18px] md:absolute md:top-1/2 md:aspect-[207/148] md:w-[28.5%] md:-translate-y-1/2 md:rounded-[22px] md:p-[7px] ${position}`}
-            >
-              <div ref={rotation.slotRef(slot)} className="aspect-video w-full" />
-            </div>
-          ))}
-
-          <div className="relative order-first col-span-2 w-full drop-shadow-[0_30px_40px_rgba(0,0,0,.35)] md:absolute md:left-1/2 md:top-0 md:z-[2] md:-mt-[2%] md:w-[56%] md:-translate-x-1/2">
-            <img src={laptopFrame} alt="" className="w-full" />
-            <div
-              ref={rotation.slotRef(FOCUS_SLOT)}
-              className="absolute left-[16.375%] top-[10%] h-[72.333%] w-[67.375%]"
-            />
-          </div>
-
-          {SHOWCASE.map((project, i) => (
-            <video
-              key={project.name}
-              ref={(el) => {
-                rotation.screenRef(i)(el);
-                videos.current[i] = el;
-              }}
-              src={project.video}
-              poster={project.poster}
-              aria-label={project.label}
-              muted
-              loop
-              playsInline
-              preload="none"
-              className="screen"
-              onTransitionEnd={(e) => rotation.onScreenTransitionEnd(i, e)}
-            />
-          ))}
-          <div
-            ref={rotation.glareRef}
-            className="glare pointer-events-none absolute z-[4] overflow-hidden rounded-[2px]"
-            aria-hidden="true"
+          <ProjectStage
+            key={project.name}
+            project={project}
+            step={step}
+            playing={inView && pageVisible && !reducedMotion}
           />
         </div>
 
@@ -109,20 +146,21 @@ export function ProjectsShowcase() {
           aria-label="Escolha o projeto em destaque"
           {...hover.handlers}
           onAnimationEnd={(e) => {
-            if (e.animationName === 'progress') rotation.advance();
+            if (e.animationName === 'progress') next();
           }}
           className={`mb-11 flex w-full max-w-[360px] flex-col items-stretch gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center ${
             paused ? 'tabs-paused' : ''
           }`}
         >
-          {SHOWCASE.map((project, i) => {
-            const isActive = i === rotation.focused;
+          {SHOWCASE.map((item, i) => {
+            const isActive = i === active;
             return (
               <button
-                key={project.name}
+                key={item.name}
                 type="button"
                 aria-pressed={isActive}
-                onClick={() => rotation.focus(i)}
+                onClick={() => select(i)}
+                style={{ '--step': `${stepSeconds(item)}s` } as CSSProperties}
                 className={`lift-on-hover relative inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-full px-[26px] py-[15px] text-[0.95rem] font-medium leading-none transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lift focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-yellow ${
                   isActive ? 'tab-active bg-blue text-white' : 'bg-white text-navy'
                 }`}
@@ -130,10 +168,11 @@ export function ProjectsShowcase() {
                 <span
                   aria-hidden="true"
                   className={`h-2 w-2 shrink-0 rounded-full ${isActive ? 'shadow-[0_0_0_3px_rgba(255,255,255,.9)]' : ''}`}
-                  style={{ background: project.accent }}
+                  style={{ background: item.accent }}
                 />
-                {project.name}
+                {item.name}
                 <i
+                  key={isActive ? `${active}-${step}` : 'idle'}
                   aria-hidden="true"
                   className={`tab-bar absolute bottom-1.5 left-[22px] right-[22px] h-0.5 overflow-hidden rounded-sm ${isActive ? 'bg-white/25' : ''}`}
                 />

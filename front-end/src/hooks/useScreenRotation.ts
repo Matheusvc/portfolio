@@ -2,15 +2,27 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import type { TransitionEvent } from 'react';
 
 const STEP_MS = 950;
-const SLOT_COUNT = 3;
 export const FOCUS_SLOT = 1;
+
+export function slotsInUse(count: number): number[] {
+  if (count >= 3) return [0, 1, 2];
+  if (count === 2) return [1, 2];
+  return [1];
+}
+
+function initialPositions(count: number): number[] {
+  const cycle = slotsInUse(count);
+  const focusAt = cycle.indexOf(FOCUS_SLOT);
+  return Array.from({ length: Math.min(count, 3) }, (_, i) => cycle[(focusAt - i + cycle.length) % cycle.length]);
+}
 
 export function useScreenRotation(count: number) {
   const containerRef = useRef<HTMLDivElement>(null);
   const glareRef = useRef<HTMLDivElement>(null);
   const slots = useRef<(HTMLElement | null)[]>([]);
   const screens = useRef<(HTMLVideoElement | null)[]>([]);
-  const positions = useRef<number[]>(Array.from({ length: count }, (_, i) => i % SLOT_COUNT));
+  const cycle = useRef(slotsInUse(count));
+  const positions = useRef<number[]>(initialPositions(count));
   const timers = useRef<number[]>([]);
   const busy = useRef(false);
   const [focused, setFocused] = useState(positions.current.indexOf(FOCUS_SLOT));
@@ -29,7 +41,7 @@ export function useScreenRotation(count: number) {
       el.style.width = `${r.width}px`;
       el.style.height = `${r.height}px`;
     };
-    screens.current.forEach((img, i) => fit(img, slots.current[positions.current[i]]));
+    screens.current.forEach((screen, i) => fit(screen, slots.current[positions.current[i]]));
     fit(glareRef.current, slots.current[FOCUS_SLOT]);
   }, []);
 
@@ -49,16 +61,18 @@ export function useScreenRotation(count: number) {
   };
 
   const rotate = useCallback(() => {
-    screens.current.forEach((img, i) => {
-      if (!img) return;
+    const order = cycle.current;
+    if (order.length < 2) return;
+    screens.current.forEach((screen, i) => {
+      if (!screen) return;
       const from = positions.current[i];
-      const to = (from + 1) % SLOT_COUNT;
+      const to = order[(order.indexOf(from) + 1) % order.length];
       positions.current[i] = to;
-      img.dataset.pos = String(to);
-      img.classList.remove('is-entering', 'is-leaving', 'is-wrapping');
-      void img.offsetWidth;
-      img.classList.add(to === FOCUS_SLOT ? 'is-entering' : from === FOCUS_SLOT ? 'is-leaving' : 'is-wrapping');
-      img.style.zIndex = to === FOCUS_SLOT || from === FOCUS_SLOT ? '3' : '1';
+      screen.dataset.pos = String(to);
+      screen.classList.remove('is-entering', 'is-leaving', 'is-wrapping');
+      void screen.offsetWidth;
+      screen.classList.add(to === FOCUS_SLOT ? 'is-entering' : from === FOCUS_SLOT ? 'is-leaving' : 'is-wrapping');
+      screen.style.zIndex = to === FOCUS_SLOT || from === FOCUS_SLOT ? '3' : '1';
     });
     place();
     if (glareRef.current) restartClass(glareRef.current, 'is-on');
@@ -71,13 +85,13 @@ export function useScreenRotation(count: number) {
 
   const focus = useCallback(
     (index: number) => {
+      const order = cycle.current;
       if (busy.current) return;
-      const steps = (FOCUS_SLOT - positions.current[index] + SLOT_COUNT) % SLOT_COUNT;
+      const steps = (order.indexOf(FOCUS_SLOT) - order.indexOf(positions.current[index]) + order.length) % order.length;
       if (!steps) return;
       busy.current = true;
-      rotate();
       const later = (fn: () => void, ms: number) => timers.current.push(window.setTimeout(fn, ms));
-      if (steps === 2) later(rotate, STEP_MS);
+      for (let s = 0; s < steps; s++) later(rotate, s * STEP_MS);
       later(() => (busy.current = false), steps * STEP_MS);
     },
     [rotate],
@@ -88,10 +102,10 @@ export function useScreenRotation(count: number) {
   }, []);
 
   useEffect(() => {
-    screens.current.forEach((img, i) => {
-      if (!img) return;
-      img.dataset.pos = String(positions.current[i]);
-      img.style.zIndex = depthFor(positions.current[i]);
+    screens.current.forEach((screen, i) => {
+      if (!screen) return;
+      screen.dataset.pos = String(positions.current[i]);
+      screen.style.zIndex = depthFor(positions.current[i]);
     });
     placeWithoutAnimation();
     const pending = timers.current;
